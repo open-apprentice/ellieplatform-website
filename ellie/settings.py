@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'clear_cache',
     # 3. own apps
     'blog',
+    'pages',
 ]
 
 # Set Installed Apps applicable in Development mode only, by checking if DEBUG is set to True.

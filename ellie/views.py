@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 
 
 def home(request):
-    return render(request, 'base.html', )
+    return render(request, 'index.html', )
 
 
 def index(request):

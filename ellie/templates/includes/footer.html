@@ -14,13 +14,13 @@
                 <h5>Additional Resources</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="{ % url 'privacy-policy' %}" class="nav-link">Privacy Policy</a>
+                        <a href="{% url 'page:single_page' 'privacy-policy' %}" class="nav-link">Privacy Policy</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{ % url 'terms-and-conditions' %}" class="nav-link">Terms and Conditions</a>
+                        <a href="{% url 'page:single_page' 'terms-and-conditions' %}" class="nav-link">Terms and Conditions</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{ % url 'MIT-license' %}" class="nav-link">MIT License Info</a>
+                        <a href="{% url 'page:single_page' 'MIT-license' %}" class="nav-link">MIT License Info</a>
                     </li>
                 </ul>
             </div>
@@ -38,7 +38,7 @@
                         <img class="icon" src="{% static 'img/icons/theme/communication/mail.svg' %}" alt="mail icon"
                              data-inject-svg/>
                         <div class="ml-3">
-                            <p>Please contact us on <a href="https://twitter.com/open_apprentice">Twitter</a>, <br> the <a href="{ % url 'contact' %}">contact form</a> or on <a href="https://github.com/open-apprentice">GitHub</a>.
+                            <p>Please contact us on <a href="https://twitter.com/open_apprentice">Twitter</a>, <br> the <a href="{% url 'page:single_page' 'contact' %}">contact form</a> or on <a href="https://github.com/open-apprentice">GitHub</a>.
                         </div>
                     </li>
                 </ul>
