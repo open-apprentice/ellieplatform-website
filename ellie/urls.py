@@ -1,21 +1,35 @@
-"""ellie URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, re_path
 
-urlpatterns = [
+from django.conf import settings
+from django.conf.urls.static import static
+
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps.views import index
+from blog.sitemaps import PostSitemap
+# from landing_pages.sitemaps import PageSitemap
+
+from . import views
+
+sitemaps = {
+    'posts': PostSitemap,
+    # 'single_pages': PageSitemap,
+}
+
+# https://overiq.com/django-1-10/handling-media-files-in-django/
+regular_patterns = [
     path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls', namespace='blog')),
+    # path('p/', include('landing_pages.urls', namespace='single_page')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('sitemap.xml/', index, {'sitemaps': sitemaps}),
+    path('sitemap-<str:section>.xml/', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
+
+
+media_root = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+static_root = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns = regular_patterns + media_root + static_root
+

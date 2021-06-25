@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% include './head.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<section class="pb-0 pb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{ % url 'blog:post_list' %}">Blog</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{ % url 'blog:post_list' %}{{ post.slug }}"><strong>{{ post.title }}
+                                </strong></a>
+                            </li>
+                        </ol>
+                    </nav>
+                    <p class="breadcrumb-item"> Category:&nbsp <a href="{ % url 'blog:category' post.category.slug  %}">
+                        {{ post.category }}</a></p>
+                </div>
+
+                <h1>{{ post.title }}</h1>
+                <div class="d-flex align-items-center">
+                    <a href="{ % url 'blog:author' author=post.author.get_username %}">
+                        <img src="{{ post.author.profile.profile_pic.url }}"
+                             alt="{{ post.author.get_full_name }}" class="avatar mr-2">
+                    </a>
+                    <div>
+                        <div>By <a
+                                href="{ % url 'blog:author' author=post.author.get_username %}"><span
+                                class="text-small">{{ post.author.get_full_name }}</span></a>
+                        </div>
+                        <div class="text-small text-muted">Published: <strong>
+                            {{ post.published_date|date:'M d, Y' }}</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="p-0" data-reading-position>
+    <div class="container">
+        <div class="row justify-content-center position-relative">
+            <div class="col-lg-10 col-xl-8">
+                <img src="{{ post.header_image.url }}" alt="{{ post.header_image_alt.url }}" class="rounded">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10">
+                <article class="article">
+                    <p class="lead"><strong>{{ post.intro|safe }}</strong></p>
+
+                    {{ post.post_content|safe }}
+                </article>
+                <div class="container">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-5 img text-center">
+                            <a href="{ % url 'blog:author' author=post.author.get_username %}">
+                                <img src="{{ post.author.profile.profile_pic.url }}"
+                                     alt="{{ post.author.get_full_name }}"
+                                     class="img-thumbnail rounded" height="250" width="250">
+                            </a>
+                        </div>
+                        <div class="col-md-7 details">
+                          <a href="{ % url 'blog:author' author=post.author.get_username %}">
+                              <h3>{{ post.author.get_full_name }}</h3>
+                          </a>
+                            <p>{{ post.author.profile.short_bio.strip | safe }}</p>
+
+                            <ul class="list-unstyled list-inline">
+                                {% if post.author.profile.author_website %}
+                                <li>
+                                    <img style="margin: 5px 6px 5px 0"
+                                         src="{% static 'img/icons/interface/star.svg' %}"
+                                         data-inject-svg height="30"/>
+                                    <a href="{{ author.profile.author_website | safe }}" target="_blank"
+                                       rel="noopener noreferrer">{{ post.author.profile.author_website | safe }}</a>
+                                </li>
+                                {% endif %}
+                                {% if post.author.profile.twitter %}
+                                <li>
+                                    <img style="margin: 5px 10px 5px 0"
+                                         src="{% static 'img/icons/social/twitter.svg' %}"
+                                         data-inject-svg height="20"/>
+                                    <a href="{{ post.author.profile.twitter_profile_url | safe }}"
+                                       target="_blank" rel="noopener noreferrer">{{ post.author.profile.twitter }}</a>
+                                </li>
+                                {% endif %}
+                                {% if post.author.profile.youtube %}
+                                <li>
+                                    <img style="margin: 5px 10px 5px 0"
+                                         src="{% static 'img/icons/social/youtube.svg' %}"
+                                         data-inject-svg height="20"/><a
+                                        href="{{ post.author.profile.youtube_profile_url | safe }}"
+                                        target="_blank" rel="noopener noreferrer">
+                                    {{ post.author.profile.youtube | safe }}</a>
+                                </li>
+                                {% endif %}
+                                {% if post.author.profile.linkedin %}
+                                <li>
+                                    <img style="margin: 5px 10px 5px 0"
+                                         src="{% static 'img/icons/social/linkedin.svg' %}"
+                                         data-inject-svg height="20"/><a
+                                        href="{{ post.author.profile.linkedin_profile_url | safe}}"
+                                        target="_blank" rel="noopener noreferrer">
+                                    {{ post.author.profile.linkedin | safe }}</a>
+                                </li>
+                                {% endif %}
+                                {% if post.author.profile.instagram %}
+                                <li>
+                                    <img style="margin: 5px 10px 5px 0"
+                                         src="{% static 'img/icons/social/instagram.svg' %}"
+                                         data-inject-svg height="20"/><a
+                                        href="{{ post.author.profile.instagram_profile_url | safe }}"
+                                        target="_blank" rel="noopener noreferrer">
+                                    {{ post.author.profile.instagram | safe }}</a>
+                                </li>
+                                {% endif %}
+                                {% if post.author.profile.github %}
+                                <li>
+                                    <img style="margin: 5px 10px 5px 0" src="{% static 'img/icons/social/github.svg' %}"
+                                         data-inject-svg height="20"/><a
+                                        href="{{ post.author.profile.github_profile_url | safe }}"
+                                        target="_blank" rel="noopener noreferrer">
+                                    {{ post.author.profile.github | safe }}</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include 'includes/sign-up-call-to-action.html' %}
+
+{% endblock %}

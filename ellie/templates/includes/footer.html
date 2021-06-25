@@ -1,0 +1,84 @@
+{% load static %}
+<footer class="pb-4 bg-light text-dark">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <a href="../">
+                    <img src="{% static 'img/ellie/elephant-E-logo.png' %}" alt="Ellie" class="icon-md mb-3">
+                </a>
+                <p class="pr-xl-3">
+                    The Ellie™ Platform is an open source MIT licensed project led by the <a href="https://openapprentice.org/">Open Apprentice Foundation</a>. Ellie™ is a cornerstone software project to help build on how teachers teach and students learn.
+                </p>
+            </div>
+            <div class="col col-lg col-xl-2">
+                <h5>Additional Resources</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="{ % url 'privacy-policy' %}" class="nav-link">Privacy Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{ % url 'terms-and-conditions' %}" class="nav-link">Terms and Conditions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{ % url 'MIT-license' %}" class="nav-link">MIT License Info</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-3 d-flex">
+                        <img class="icon" src="{% static 'img/icons/theme/map/marker-1.svg' %}" alt="marker-1 icon"
+                             data-inject-svg/>
+                        <div class="ml-3">
+                  <span>Paris, France</span>
+                        </div>
+                    </li>
+                    <li class="mb-3 d-flex">
+                        <img class="icon" src="{% static 'img/icons/theme/communication/mail.svg' %}" alt="mail icon"
+                             data-inject-svg/>
+                        <div class="ml-3">
+                            <p>Please contact us on <a href="https://twitter.com/open_apprentice">Twitter</a>, <br> the <a href="{ % url 'contact' %}">contact form</a> or on <a href="https://github.com/open-apprentice">GitHub</a>.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-auto">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="https://github.com/open-apprentice" class="nav-link">
+                            <img class="icon " src="{% static 'img/icons/social/github.svg' %}" alt="github social icon"
+                                 data-inject-svg/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://twitter.com/open_apprentice" class="nav-link">
+                            <img class="icon " src="{% static 'img/icons/social/twitter.svg' %}" alt="twitter social icon"
+                                 data-inject-svg/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.youtube.com/channel/UCzcd2gOS5otSHKYT8i7-hZw" class="nav-link">
+                            <img class="icon " src="{% static 'img/icons/social/youtube.svg' %}" alt="youtube social icon"
+                                 data-inject-svg/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.linkedin.com/company/open-apprentice" class="nav-link">
+                            <img class="icon " src="{% static 'img/icons/social/linkedin.svg' %}" alt="linkedin social icon"
+                                 data-inject-svg/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-md-auto text-center">
+                <small class="text-muted">&copy;2021 All Rights Reserved. Ellie®, the Ellie Logo®, The OpenApprentice Logo® are a trademarks of The Open Apprentice Foundation and are used with it's permission. </small>
+            </div>
+        </div>
+    </div>
+</footer>

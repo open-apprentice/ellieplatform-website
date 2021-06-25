@@ -1,0 +1,228 @@
+{% load static %}
+
+<div class="navbar-container ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand fade-page" href="{ % url 'home' %}">
+                <img src="{% static 'img/ellie/ellie-platform-logo.png' %}" height="80"  alt="Ellie Platform Logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <img class="icon navbar-toggler-open" src="{% static 'img/icons/interface/menu.svg' %}"
+                     alt="menu interface icon" data-inject-svg/>
+                <img class="icon navbar-toggler-close" src="{% static 'img/icons/interface/cross.svg' %}"
+                     alt="cross interface icon" data-inject-svg/>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end">
+                <div class="py-2 py-lg-0">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item dropdown">
+                            <a href="{ % url 'home' %}" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
+                               aria-expanded="false" aria-haspopup="true">Home</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                        <a href="{% url 'blog:post_list' %}" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
+                           aria-expanded="false" aria-haspopup="true">Blog</a>
+                       </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="{ % url 'about' %}" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
+                               aria-expanded="false" aria-haspopup="true">About Us</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="{ % url 'contact' %}" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
+                               aria-expanded="false" aria-haspopup="true">Contact</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
+                               aria-expanded="false" aria-haspopup="true">Ellie Features</a>
+
+                            <div class="dropdown-menu bg-primary-3 text-light border-bottom">
+                                <div class="container py-4" data-dropdown-content>
+                                    <div class="row w-100">
+                                        <div class="col-lg col-md-4 mb-3 mb-lg-0">
+                                            <h5>Administrator Tools</h5>
+                                            <div><a class="dropdown-item fade-page" href="elements-grid.html">No Limit - Multi-lingual</a><a
+                                                    class="dropdown-item fade-page" href="elements-forms.html">No limit - sub-schools</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-tables.html">Unlimited - Roles</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-typography.html">MIT Open Source</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-typography.html">Built-in student marketing tools</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-typography.html">Drag and Drop</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-typography.html">Accessibility Focused</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-typography.html">Module based content - teach it once</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg col-md-4 mb-3 mb-lg-0">
+                                            <h5>Teaching Blocks</h5>
+                                            <div><a class="dropdown-item fade-page"
+                                                    href="elements-alerts.html">Definitions</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-avatars.html">Related Stories</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-badges.html">Explain it to someone else</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-breadcrumbs.html">Repeat after me</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-buttons.html">Easy Flashcards</a><a
+                                                    class="dropdown-item fade-page" href="elements-cards.html">Check someone else out</a><a
+                                                    class="dropdown-item fade-page"
+                                                    href="elements-dropdowns-bootstrap.html">Question Randomizer</a><a
+                                                    class="dropdown-item fade-page" href="elements-dropdowns-grid.html">Show and tell
+                                                Grid</a><a class="dropdown-item fade-page" href="elements-footers.html">Match cards</a>
+                                                <a
+                                                        class="dropdown-item fade-page" href="elements-navbars.html">Dig Deeper Links</a><a
+                                                        class="dropdown-item fade-page" href="elements-tooltips.html">Multiple Choice</a><a
+                                                        class="dropdown-item fade-page" href="elements-toasts.html">Voice Compare</a><a
+                                                        class="dropdown-item fade-page" href="elements-widgets.html">Ask a friend verification</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg col-md-4 mb-3 mb-lg-0">
+                                            <h5>Student Resources</h5>
+                                            <div><a class="dropdown-item fade-page" href="elements-decorations.html">Measure Progress</a><a
+                                                    class="dropdown-item fade-page" href="elements-dividers.html">Check knowledge</a><a
+                                                    class="dropdown-item fade-page" href="elements-icons.html">Tailored learning</a>
+                                                <a
+                                                    class="dropdown-item fade-page" href="elements-icons.html">Learn it once credits</a>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
+                               aria-expanded="false" aria-haspopup="true">Use Cases</a>
+                            <div class="dropdown-menu row">
+                                <div class="col-auto px-0" data-dropdown-content>
+                                    <div class="bg-white rounded border shadow-lg o-hidden">
+                                        <div class="p-3">
+                                            <h6 class="mb-0">Highlighted Use Cases</h6>
+                                        </div>
+
+                                        <div class="list-group list-group-flush">
+                                            <a href="documentation/index.html" target="_blank"
+                                               class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                                                <img class="icon icon-md"
+                                                     src="{% static 'img/icons/theme/files/selected-file.svg' %}"
+                                                     alt="selected-file icon" data-inject-svg/>
+                                                <div class="text-body ml-3">
+                                                    <span>Book Authors</span>
+                                                    <div class="text-small text-muted">Book Authors teach their books
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <a href="https://themes.zendesk.com/hc/en-us/articles/360000006291-How-do-I-get-help-with-the-theme-I-purchased-"
+                                               target="_blank"
+                                               class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                                                <img class="icon icon-md"
+                                                     src="{% static 'img/icons/theme/communication/chat-4.svg' %}"
+                                                     alt="chat-4 icon" data-inject-svg/>
+                                                <div class="text-body ml-3">
+                                                    <span>Course Creators</span>
+                                                    <div class="text-small text-muted">Course creators create modular content one time</div>
+                                                </div>
+                                            </a>
+
+                                            <a href="https://themes.zendesk.com/hc/en-us/articles/360000006291-How-do-I-get-help-with-the-theme-I-purchased-"
+                                               target="_blank"
+                                               class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                                                <img class="icon icon-md"
+                                                     src="{% static 'img/icons/theme/communication/chat-4.svg' %}"
+                                                     alt="chat-4 icon" data-inject-svg/>
+                                                <div class="text-body ml-3">
+                                                    <span>Blog Owners</span>
+                                                    <div class="text-small text-muted">Teach evergreen content </div>
+                                                </div>
+                                            </a>
+
+                                            <a href="https://themes.zendesk.com/hc/en-us/articles/360000006291-How-do-I-get-help-with-the-theme-I-purchased-"
+                                               target="_blank"
+                                               class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                                                <img class="icon icon-md"
+                                                     src="{% static 'img/icons/theme/communication/chat-4.svg' %}"
+                                                     alt="chat-4 icon" data-inject-svg/>
+                                                <div class="text-body ml-3">
+                                                    <span>Teachers</span>
+                                                    <div class="text-small text-muted">Teachers teach each student as individuals</div>
+                                                </div>
+                                            </a>
+
+                                            <a href="https://themes.zendesk.com/hc/en-us/articles/360000006291-How-do-I-get-help-with-the-theme-I-purchased-"
+                                               target="_blank"
+                                               class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                                                <img class="icon icon-md"
+                                                     src="{% static 'img/icons/theme/communication/chat-4.svg' %}"
+                                                     alt="chat-4 icon" data-inject-svg/>
+                                                <div class="text-body ml-3">
+                                                    <span>Home Schoolers</span>
+                                                    <div class="text-small text-muted">Home Schoolers give the best education to their children</div>
+                                                </div>
+                                            </a>
+
+                                            <a href="https://themes.zendesk.com/hc/en-us/articles/360000006291-How-do-I-get-help-with-the-theme-I-purchased-"
+                                               target="_blank"
+                                               class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                                                <img class="icon icon-md"
+                                                     src="{% static 'img/icons/theme/communication/chat-4.svg' %}"
+                                                     alt="chat-4 icon" data-inject-svg/>
+                                                <div class="text-body ml-3">
+                                                    <span>Social Projects</span>
+                                                    <div class="text-small text-muted">Social Projects garner support through education</div>
+                                                </div>
+                                            </a>
+
+                                            <a href="https://themes.zendesk.com/hc/en-us/articles/360000006291-How-do-I-get-help-with-the-theme-I-purchased-"
+                                               target="_blank"
+                                               class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                                                <img class="icon icon-md"
+                                                     src="{% static 'img/icons/theme/communication/chat-4.svg' %}"
+                                                     alt="chat-4 icon" data-inject-svg/>
+                                                <div class="text-body ml-3">
+                                                    <span>Educators</span>
+                                                    <div class="text-small text-muted">Educators provide systemic care to teachers and their students</div>
+                                                </div>
+                                            </a>
+
+                                            <a href="https://themes.zendesk.com/hc/en-us/articles/360000006291-How-do-I-get-help-with-the-theme-I-purchased-"
+                                               target="_blank"
+                                               class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                                                <img class="icon icon-md"
+                                                     src="{% static 'img/icons/theme/communication/chat-4.svg' %}"
+                                                     alt="chat-4 icon" data-inject-svg/>
+                                                <div class="text-body ml-3">
+                                                    <span>Documentation</span>
+                                                    <div class="text-small text-muted">Software projects increase traction through engaging and effective documentation</div>
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://github.com/open-apprentice" class="btn btn-primary ">GitHub Download</a>
+                <a href="{ % url 'landing_page:single_page' 'start-free' %}" class="btn btn-success ml-2">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+</div>

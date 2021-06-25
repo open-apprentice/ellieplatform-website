@@ -1,0 +1,59 @@
+{% load static %}
+
+    <script type="application/ld+json">
+        {
+            "@context":"http://schema.org",
+            "@type": "BlogPosting",
+            "image": "https://{{request.site.domain}}{{ post.header_image.url }}",
+            "url": "https://{{request.site.domain}}/{{ post.slug }}",
+            "headline": "{{ post.title }}",
+            "alternativeHeadline": "{{ post.intro|striptags }}",
+            "dateCreated": "{{ post.created_date }}",
+            "datePublished": "{{ post.published_date }}",
+            "dateModified": "{{ post.updated }}",
+            "inLanguage": "en-US",
+            "isFamilyFriendly": "true",
+            "copyrightYear": "{{ post.published_date | date:'Y' }}",
+            "copyrightHolder": "{{ ORGANIZATION_NAME }}",
+            "contentLocation": {
+                "@type": "Place",
+                "name": "Paris, France"
+            },
+            "accountablePerson": {
+                "@type": "Person",
+                "name": "David Kartuzinski",
+                "url": "{{ ORGANIZATION_WEBSITE }}"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "{{ post.author }}",
+                "url": "{{ post.author.profile.author_website }}"
+            },
+            "creator": {
+                "@type": "Person",
+                "name": "David Kartuzinski",
+                "url": "{{ ORGANIZATION_WEBSITE }}"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "{{ ORGANIZATION_NAME }}",
+                "url": "{{ ORGANIZATION_WEBSITE }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://{{request.site.domain}}{{ SITE_LOGO_URL }}"
+                }
+            },
+            "sponsor": {
+                "@type": "Organization",
+                "name": "{{ ORGANIZATION_NAME }}",
+                "url": "{{ ORGANIZATION_WEBSITE }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://{{request.site.domain}}{{ ORGANIZATION_LOGO }}"
+                }
+            },
+            "mainEntityOfPage": "True",
+            "articleSection": "{{ post.category }}",
+            "articleBody": "{{ post.post_content.strip|striptags|safe }}"
+        }
+    </script>
