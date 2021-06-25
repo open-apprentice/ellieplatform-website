@@ -1,0 +1,4 @@
+-r base.txt
+
+django-livereload-server==0.3.2
+
