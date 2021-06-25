@@ -18,7 +18,6 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -28,8 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default='False', cast=bool)
 
-ALLOWED_HOSTS = ['ellieplatform.org', 'www.ellieplatform.org']
-
+ALLOWED_HOSTS = ['ellieplatform.org', 'www.ellieplatform.org', '127.0.0.1']
 
 # Application definition
 
@@ -39,8 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
 ]
+
+# Set Installed Apps applicable in Development mode only, by checking if DEBUG is set to True.
+if DEBUG:
+    INSTALLED_APPS += (
+        # In development livereload comes before django.contrib.staticfiles
+        'livereload',
+    )
+
+INSTALLED_APPS += (
+    # In production just add django.contrib.staticfiles.
+    'django.contrib.staticfiles',
+)
+
+SITE_ID = 1 # Sitemaps https://www.codesnail.com/adding-a-sitemap-to-the-website-django-blog-10/
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +62,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Set Installed Apps applicable in Development mode only, by checking if DEBUG is set to True.
+if DEBUG:
+    MIDDLEWARE += (
+        # Development extensions
+        'livereload.middleware.LiveReloadScript',
+    )
 
 ROOT_URLCONF = 'ellie.urls'
 
@@ -72,16 +90,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ellie.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': dj_database_url.config(
-	default=config('DATABASE_URL')
-     )
+        default=config('DATABASE_URL')
+    )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -101,7 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -115,19 +130,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-
 # Media files
 # https://overiq.com/django-1-10/handling-media-files-in-django/
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
