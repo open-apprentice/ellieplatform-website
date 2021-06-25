@@ -1,0 +1,32 @@
+{% include 'includes/head.html' %}
+
+{% load static %}
+
+<body>
+<div class="loader">
+    <div class="loading-animation"></div>
+</div>
+
+
+{% include 'includes/nav-menu.html' %}
+
+
+{% block content %}
+
+{% endblock %}
+
+
+{% include 'includes/related-stories.html' %}
+
+{% include 'includes/footer.html' %}
+
+<a href="#" class="btn back-to-top btn-primary btn-round" data-smooth-scroll data-aos="fade-up" data-aos-offset="2000"
+   data-aos-mirror="true" data-aos-once="false">
+    <img class="icon" src="{% static 'img/icons/theme/navigation/arrow-up.svg' %}" alt="arrow-up icon" data-inject-svg/>
+</a>
+
+{% include 'includes/javascript.html' %}
+
+</body>
+
+</html>

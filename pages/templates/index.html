@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% include './head.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<h1>HOME</h1>
+
+                    {{ page.beg_page_content|safe }}
+
+                    {{ page.variation_page_content|safe }}
+
+                    {{ page.end_page_content|safe }}
+
+
+
+
+{% include 'includes/sign-up-call-to-action.html' %}
+
+{% endblock %}
