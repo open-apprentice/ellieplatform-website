@@ -1,31 +1,39 @@
-
-  {% load static %}
-
-        <div class="col-md-4 col-lg-3 d-none d-md-block">
-            <div class="mb-4">
-              <h5>Newsletter</h5>
-              <form action="/forms/mailchimp.php" data-form-email novalidate>
-                <div class="form-row">
-                  <div class="col-12">
-                    <input type="email" class="form-control mb-2" placeholder="Email Address" name="email" required>
-                  </div>
-                  <div class="col-12">
-                    <div class="d-none alert alert-success" role="alert" data-success-message>
-                      Thanks, a member of our team will be in touch shortly.
-                    </div>
-                    <div class="d-none alert alert-danger" role="alert" data-error-message>
-                      Please fill all fields correctly.
-                    </div>
-                    <div data-recaptcha data-sitekey="INSERT_YOUR_RECAPTCHA_V2_SITEKEY_HERE" data-size="invisible" data-badge="bottomleft">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-loading btn-block" data-loading-text="Sending">
-                      <img class="icon" src="assets/img/icons/theme/code/loading.svg" alt="loading icon" data-inject-svg />
-                      <span>Subscribe</span>
-                    </button>
-                  </div>
+ {% load static %}
+ <div class="col-md-4 col-lg-3 d-none d-md-block">
+     <div class="mb-4">
+         <h5>Newsletter</h5>
+          <!-- Begin Mailchimp Signup Form -->
+         <div id="mc_embed_signup">
+         <form action="https://ellieplatform.us3.list-manage.com/subscribe/post?u=b96fce7934d3d67838002705e&amp;id=ed81358a63" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+             <div class="form-row">
+                 <div id="mc_embed_signup_scroll">
+                     <div class="mc-field-group">
+                         <label for="mce-EMAIL">
+                             <small class="text-muted form-text">Email Address<span class="asterisk">*</span></small>
+                         </label>
+                         <input type="email" value="email address" name="EMAIL" onfocus="this.value=''"  class="form-control mb-2 required email" id="mce-EMAIL">
+                     </div> <!-- mc-field-group -->
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
                 </div>
-              </form>
-              <small class="text-muted form-text">We’ll never share your details. See our <a href="{% url 'page:single_page' 'privacy-policy' %}">Privacy Policy</a>
-              </small>
+     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                    <input type="text" name="b_b96fce7934d3d67838002705e_ed81358a63" tabindex="-1" value="">
+                </div>
+                <div class="clear">
+                    <input type="submit"  class="btn btn-primary btn-loading btn-block" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" >
+                </div>
 
-            </div>
+                 </div> <!-- mc_embed_signup_scroll -->
+                 <small class="text-muted form-text">We’ll never share your details. See our <a href="{% url 'page:single_page' 'privacy-policy' %}">Privacy Policy</a></small>
+                 <small class="text-muted form-text"><span class="asterisk">*</span> indicates required</small>
+             </div> <!-- form-row -->
+         </form>
+        <!--End mc_embed_signup-->
+         </div> <!-- mc_embed_signup -->
+    </div> <!--MB-4-->
+
+
+
+
