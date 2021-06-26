@@ -15,27 +15,27 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{ % url 'blog:post_list' %}">Blog</a>
+                                <a href="{% url 'blog:post_list' %}">Blog</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{ % url 'blog:post_list' %}{{ post.slug }}"><strong>{{ post.title }}
+                                <a href="{% url 'blog:post_list' %}{{ post.slug }}"><strong>{{ post.title }}
                                 </strong></a>
                             </li>
                         </ol>
                     </nav>
-                    <p class="breadcrumb-item"> Category:&nbsp <a href="{ % url 'blog:category' post.category.slug  %}">
+                    <p class="breadcrumb-item"> Category:&nbsp <a href="{% url 'blog:category' post.category.slug  %}">
                         {{ post.category }}</a></p>
                 </div>
 
                 <h1>{{ post.title }}</h1>
                 <div class="d-flex align-items-center">
-                    <a href="{ % url 'blog:author' author=post.author.get_username %}">
+                    <a href="{% url 'blog:author' author=post.author.get_username %}">
                         <img src="{{ post.author.profile.profile_pic.url }}"
                              alt="{{ post.author.get_full_name }}" class="avatar mr-2">
                     </a>
                     <div>
                         <div>By <a
-                                href="{ % url 'blog:author' author=post.author.get_username %}"><span
+                                href="{% url 'blog:author' author=post.author.get_username %}"><span
                                 class="text-small">{{ post.author.get_full_name }}</span></a>
                         </div>
                         <div class="text-small text-muted">Published: <strong>
@@ -64,14 +64,14 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-5 img text-center">
-                            <a href="{ % url 'blog:author' author=post.author.get_username %}">
+                            <a href="{% url 'blog:author' author=post.author.get_username %}">
                                 <img src="{{ post.author.profile.profile_pic.url }}"
                                      alt="{{ post.author.get_full_name }}"
                                      class="img-thumbnail rounded" height="250" width="250">
                             </a>
                         </div>
                         <div class="col-md-7 details">
-                          <a href="{ % url 'blog:author' author=post.author.get_username %}">
+                          <a href="{% url 'blog:author' author=post.author.get_username %}">
                               <h3>{{ post.author.get_full_name }}</h3>
                           </a>
                             <p>{{ post.author.profile.short_bio.strip | safe }}</p>

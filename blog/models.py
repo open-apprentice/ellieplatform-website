@@ -111,6 +111,10 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
+    # needed to get the sitemaps for posts to work
+    def get_absolute_url(self):
+        return '/' + self.slug
+
     def __str__(self):
         return self.title
 

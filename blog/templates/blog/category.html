@@ -16,7 +16,7 @@
                         </li>
                         <li class="breadcrumb-item">
                             <span> Category: &nbsp;  </span>
-                            <a href="{ % url 'blog:category' slug=category.slug  %}">{{ category.name }}</a>
+                            <a href="{% url 'blog:category' slug=category.slug  %}">{{ category.name }}</a>
                         </li>
                     </ol>
                 </nav>
@@ -46,7 +46,7 @@
 
                 <div class="pr-lg-4">
                     <div class="card card-article-wide flex-md-row no-gutters">
-                        <a href="{ % url 'blog:post_list' %}{{ post.slug }}" class="col-md-4">
+                        <a href="{% url 'blog:post_list' %}{{ post.slug }}" class="col-md-4">
                             <img src="{{ post.header_image.url }}" alt="{{ post.header_image_alt.url }}"
                                  class="card-img-top">
                         </a>
@@ -54,14 +54,14 @@
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex">
                                     <div class="mr-2">
-                                        <p>Category:&nbsp; <a href="{ % url 'blog:category' post.category.slug  %}">
+                                        <p>Category:&nbsp; <a href="{% url 'blog:category' post.category.slug  %}">
                                             {{ post.category.name }}</a></p>
                                     </div>
                                     <span class="text-muted">{{ post.published_date|date:'M d, Y' }}</span>
                                 </div>
 
                             </div>
-                            <a href="{ % url 'blog:post_list' %}{{ post.slug }}" class="flex-grow-1">
+                            <a href="{% url 'blog:post_list' %}{{ post.slug }}" class="flex-grow-1">
                                 <h3>{{ post.title }}</h3>
                             </a>
                             <p class="lead"><strong>{{ post.intro|safe }}</strong></p>
@@ -71,13 +71,13 @@
                                      class="avatar avatar-sm">
                                 <div class="ml-1">
                                     <span class="text-small text-muted">By <a
-                                            href="{ % url 'blog:author' author=post.author.get_username %}"><span
+                                            href="{% url 'blog:author' author=post.author.get_username %}"><span
                                             class="text-small">{{ post.author.get_full_name }}</span></a></span>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mt-3">
                                 <span class="badge bg-primary-alt text-primary">
-                                    <a href="{ % url 'blog:post_list' %}{{ post.slug }}" class="flex-grow-1"> Read more... </a>
+                                    <a href="{% url 'blog:post_list' %}{{ post.slug }}" class="flex-grow-1"> Read more... </a>
                                 </span>
                             </div>
                         </div>
