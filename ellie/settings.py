@@ -60,7 +60,7 @@ INSTALLED_APPS += (
     'django.contrib.staticfiles',
 )
 
-SITE_ID = 1 # Sitemaps https://www.codesnail.com/adding-a-sitemap-to-the-website-django-blog-10/
+SITE_ID = 1  # Sitemaps https://www.codesnail.com/adding-a-sitemap-to-the-website-django-blog-10/
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
@@ -199,3 +199,38 @@ CKEDITOR_IMAGE_BACKEND = 'pillow'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if not DEBUG:
+    # https://stackoverflow.com/questions/15128135/setting-debug-false-causes-500-error
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+                'datefmt': "%d/%b/%Y %H:%M:%S"
+            },
+            'simple': {
+                'format': '%(levelname)s %(message)s'
+            },
+        },
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': 'ellie.log',
+                'formatter': 'verbose'
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'propagate': True,
+                'level': 'DEBUG',
+            },
+            'MYAPP': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+            },
+        }
+    }
