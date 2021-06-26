@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% include './head.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+<section class="pt-3">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'page:index' %}">Home</a>
+            </li>
+
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pt-0" data-reading-position>
+    <div class="container">
+        <div class="row">
+            <div class="col-auto"></div>
+            <div class="col">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-8">
+                        <span class="text-muted">This sucks...</span>
+                        <h1 class="my-2">There was some sort of not found (404) error.</h1>
+
+                        <article class="article">
+                            <p class="lead">
+                                Please checkout our <a href="{% url 'blog:post_list' %}">blog</a> for awesome content.
+                            </p>
+                            <p>
+                                If you need to vent or talk to someone about this, please feel free to
+                                <a href="{% url 'page:single_page' 'contact' %}">contact us.</a>
+                            </p>
+
+
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/sign-up-call-to-action.html' %}
+
+{% endblock %}
