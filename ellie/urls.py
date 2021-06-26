@@ -8,7 +8,7 @@ from django.contrib.sitemaps.views import sitemap
 from django import contrib
 from blog.sitemaps import PostSitemap
 from pages.sitemaps import PageSitemap
-from . import views
+# from . import views
 
 sitemaps = {
     'posts': PostSitemap,
@@ -19,7 +19,7 @@ sitemaps = {
 regular_patterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
-    path('', include('pages.urls', namespace='single_page')),
+    path('', include('pages.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('sitemap.xml/', contrib.sitemaps.views.index, {'sitemaps': sitemaps}),
     path('sitemap-<str:section>.xml/', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
