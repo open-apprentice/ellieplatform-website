@@ -1,34 +1,56 @@
-  {% load static %}
+{% load static %}
 
-    <section class="pt-0">
-      <div class="container">
+<section class="pt-0">
+    <div class="container">
         <div class="row justify-content-center text-center">
-          <div class="col-xl-7 col-lg-8 col-md-10">
-            <h3 class="h2 mb-5">Get great articles direct to your inbox</h3>
-            <form action="/forms/mailchimp.php" data-form-email novalidate>
-              <div class="d-sm-flex flex-column flex-sm-row mb-3 justify-content-center">
-                <input type="email" name="email" class="mr-sm-1 mb-2 mb-sm-0 form-control form-control-lg" placeholder="Email Address" required>
-                <div data-recaptcha data-sitekey="INSERT_YOUR_RECAPTCHA_V2_SITEKEY_HERE" data-size="invisible" data-badge="bottomleft"></div>
-                <button type="submit" class="ml-sm-1 btn btn-lg btn-primary btn-loading" data-loading-text="Sending">
-                  <img class="icon" src="{% static 'img/icons/theme/code/loading.svg' %}" alt="loading icon" data-inject-svg />
-                  <span>Subscribe</span>
-                </button>
-              </div>
-              <div>
-                <div class="d-none alert alert-success" role="alert" data-success-message>
-                  Thanks, a member of our team will be in touch shortly.
-                </div>
-                <div class="d-none alert alert-danger" role="alert" data-error-message>
-                  Please fill all fields correctly.
-                </div>
-              </div>
-            </form>
+            <div class="col-xl-7 col-lg-8 col-md-10">
+                <h3 class="h2 mb-5">Get great articles direct to your inbox</h3>
+                <div id="mc_embed_signup">
 
-            <div class="text-small text-muted">
-              We’ll never share your details with third parties.
-              <br class="visible-md" />View our <a href="{% url 'page:single_page' 'privacy-policy' %}">Privacy Policy</a> for more info.
-            </div>
-          </div>
+
+                    <form action="https://ellieplatform.us3.list-manage.com/subscribe/post?u=b96fce7934d3d67838002705e&amp;id=ed81358a63"
+                          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                          class="validate" target="_blank" novalidate>
+
+                        <div class="d-sm-flex flex-column flex-sm-row ">
+                            <label class="mr-sm-1 " for="mce-EMAIL">
+                                <small class="text-muted form-text">Email Address<span class="asterisk">*</span></small>
+                            </label>
+                        </div>
+                        <div class="d-sm-flex flex-column flex-sm-row mb-3 justify-content-center">
+                            <input type="email" value="email address" name="EMAIL" onfocus="this.value=''"
+                                   class="mr-sm-1 mb-2 mb-sm-0 form-control form-control-lg required email"
+                                   id="mce-EMAIL">
+                        </div>
+
+                        <div id="mce-responses" class="clear">
+                            <div class="response" id="mce-error-response" style="display:none"></div>
+                            <div class="response" id="mce-success-response" style="display:none"></div>
+                        </div>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" name="b_b96fce7934d3d67838002705e_ed81358a63" tabindex="-1" value="">
+                        </div>
+                        <div class="clear">
+                            <input type="submit" class="btn btn-primary btn-loading btn-block" value="Subscribe"
+                                   name="subscribe" id="mc-embedded-subscribe">
+                        </div>
+
+
+                        <div class="text-small text-muted">
+                            We’ll never share your details with third parties.
+                            <br class="visible-md"/>View our <a href="{% url 'page:single_page' 'privacy-policy' %}">Privacy
+                            Policy</a> for more info.
+                        </div>
+
+                </div> <!-- form-row -->
+
+
+                </form>
+                <!--End mc_embed_signup-->
+            </div> <!-- mc_embed_signup -->
+
         </div>
-      </div>
-    </section>
+    </div>
+    </div>
+</section>
