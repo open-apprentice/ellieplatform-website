@@ -8,6 +8,7 @@ from django.contrib.sitemaps.views import sitemap
 from django import contrib
 from blog.sitemaps import PostSitemap
 from pages.sitemaps import PageSitemap
+
 # from . import views
 
 sitemaps = {
@@ -29,3 +30,6 @@ media_root = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 static_root = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns = regular_patterns + media_root + static_root
+
+handler404 = 'pages.views.handler404'
+handler500 = 'pages.views.handler500'

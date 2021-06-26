@@ -50,7 +50,7 @@ def category_post_list(request, slug):
     category = Category.objects.get(slug=slug)
 
     posts_list = category.posts.filter(status="published")
-    paginator = Paginator(posts_list, 5)  # change this to accommodate number of posts per page
+    paginator = Paginator(posts_list, 3)  # change this to accommodate number of posts per page
 
     page = request.GET.get('page', 1)
 
