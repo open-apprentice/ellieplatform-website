@@ -1,0 +1,2012 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.3
+-- Dumped by pg_dump version 13.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO madamellie;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO madamellie;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id bigint NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO madamellie;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO madamellie;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO madamellie;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO madamellie;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO madamellie;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.auth_user_groups (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO madamellie;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO madamellie;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO madamellie;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO madamellie;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO madamellie;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: blog_category; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.blog_category (
+    id bigint NOT NULL,
+    name character varying(30) NOT NULL,
+    slug character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.blog_category OWNER TO madamellie;
+
+--
+-- Name: blog_category_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.blog_category_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_category_id_seq OWNER TO madamellie;
+
+--
+-- Name: blog_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.blog_category_id_seq OWNED BY public.blog_category.id;
+
+
+--
+-- Name: blog_post; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.blog_post (
+    id bigint NOT NULL,
+    title character varying(200) NOT NULL,
+    slug character varying(60) NOT NULL,
+    header_image character varying(100) NOT NULL,
+    post_content text NOT NULL,
+    intro text NOT NULL,
+    created_date timestamp with time zone NOT NULL,
+    published_date timestamp with time zone,
+    active boolean NOT NULL,
+    meta_description text NOT NULL,
+    author_id integer NOT NULL,
+    category_id bigint NOT NULL,
+    status character varying(10) NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    header_image_alt character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.blog_post OWNER TO madamellie;
+
+--
+-- Name: blog_post_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.blog_post_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_post_id_seq OWNER TO madamellie;
+
+--
+-- Name: blog_post_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.blog_post_id_seq OWNED BY public.blog_post.id;
+
+
+--
+-- Name: blog_profile; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.blog_profile (
+    id bigint NOT NULL,
+    bio text,
+    profile_pic character varying(100) NOT NULL,
+    user_id integer NOT NULL,
+    twitter character varying(255) NOT NULL,
+    author_website character varying(255) NOT NULL,
+    github character varying(255) NOT NULL,
+    instagram character varying(255) NOT NULL,
+    linkedin character varying(255) NOT NULL,
+    youtube character varying(255) NOT NULL,
+    short_bio text
+);
+
+
+ALTER TABLE public.blog_profile OWNER TO madamellie;
+
+--
+-- Name: blog_profile_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.blog_profile_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_profile_id_seq OWNER TO madamellie;
+
+--
+-- Name: blog_profile_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.blog_profile_id_seq OWNED BY public.blog_profile.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO madamellie;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO madamellie;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO madamellie;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO madamellie;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_flatpage; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.django_flatpage (
+    id integer NOT NULL,
+    url character varying(100) NOT NULL,
+    title character varying(200) NOT NULL,
+    content text NOT NULL,
+    enable_comments boolean NOT NULL,
+    template_name character varying(70) NOT NULL,
+    registration_required boolean NOT NULL
+);
+
+
+ALTER TABLE public.django_flatpage OWNER TO madamellie;
+
+--
+-- Name: django_flatpage_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.django_flatpage_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_flatpage_id_seq OWNER TO madamellie;
+
+--
+-- Name: django_flatpage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.django_flatpage_id_seq OWNED BY public.django_flatpage.id;
+
+
+--
+-- Name: django_flatpage_sites; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.django_flatpage_sites (
+    id bigint NOT NULL,
+    flatpage_id integer NOT NULL,
+    site_id integer NOT NULL
+);
+
+
+ALTER TABLE public.django_flatpage_sites OWNER TO madamellie;
+
+--
+-- Name: django_flatpage_sites_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.django_flatpage_sites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_flatpage_sites_id_seq OWNER TO madamellie;
+
+--
+-- Name: django_flatpage_sites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.django_flatpage_sites_id_seq OWNED BY public.django_flatpage_sites.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.django_migrations (
+    id bigint NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO madamellie;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO madamellie;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO madamellie;
+
+--
+-- Name: django_site; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.django_site (
+    id integer NOT NULL,
+    domain character varying(100) NOT NULL,
+    name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.django_site OWNER TO madamellie;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.django_site_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_site_id_seq OWNER TO madamellie;
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.django_site_id_seq OWNED BY public.django_site.id;
+
+
+--
+-- Name: flatpage_main_newflatpage; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.flatpage_main_newflatpage (
+    id bigint NOT NULL,
+    flatpage_id integer NOT NULL,
+    content_section text NOT NULL
+);
+
+
+ALTER TABLE public.flatpage_main_newflatpage OWNER TO madamellie;
+
+--
+-- Name: flatpage_main_newflatpage_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.flatpage_main_newflatpage_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.flatpage_main_newflatpage_id_seq OWNER TO madamellie;
+
+--
+-- Name: flatpage_main_newflatpage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.flatpage_main_newflatpage_id_seq OWNED BY public.flatpage_main_newflatpage.id;
+
+
+--
+-- Name: landing_pages_page; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.landing_pages_page (
+    title character varying(200) NOT NULL,
+    slug character varying(60) NOT NULL,
+    beg_page_content text NOT NULL,
+    variation_id integer NOT NULL,
+    variation_page_content text NOT NULL,
+    end_page_content text NOT NULL,
+    created_date timestamp with time zone NOT NULL,
+    published_date timestamp with time zone,
+    active boolean NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    status character varying(10) NOT NULL,
+    meta_description text NOT NULL
+);
+
+
+ALTER TABLE public.landing_pages_page OWNER TO madamellie;
+
+--
+-- Name: landing_pages_page_variation_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.landing_pages_page_variation_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.landing_pages_page_variation_id_seq OWNER TO madamellie;
+
+--
+-- Name: landing_pages_page_variation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.landing_pages_page_variation_id_seq OWNED BY public.landing_pages_page.variation_id;
+
+
+--
+-- Name: pages_page; Type: TABLE; Schema: public; Owner: madamellie
+--
+
+CREATE TABLE public.pages_page (
+    title character varying(200) NOT NULL,
+    slug character varying(60) NOT NULL,
+    beg_page_content text NOT NULL,
+    variation_id integer NOT NULL,
+    variation_page_content text NOT NULL,
+    end_page_content text NOT NULL,
+    created_date timestamp with time zone NOT NULL,
+    published_date timestamp with time zone,
+    active boolean NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    status character varying(10) NOT NULL,
+    meta_description text NOT NULL
+);
+
+
+ALTER TABLE public.pages_page OWNER TO madamellie;
+
+--
+-- Name: pages_page_variation_id_seq; Type: SEQUENCE; Schema: public; Owner: madamellie
+--
+
+CREATE SEQUENCE public.pages_page_variation_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pages_page_variation_id_seq OWNER TO madamellie;
+
+--
+-- Name: pages_page_variation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: madamellie
+--
+
+ALTER SEQUENCE public.pages_page_variation_id_seq OWNED BY public.pages_page.variation_id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: blog_category id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_category ALTER COLUMN id SET DEFAULT nextval('public.blog_category_id_seq'::regclass);
+
+
+--
+-- Name: blog_post id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_post ALTER COLUMN id SET DEFAULT nextval('public.blog_post_id_seq'::regclass);
+
+
+--
+-- Name: blog_profile id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_profile ALTER COLUMN id SET DEFAULT nextval('public.blog_profile_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_flatpage id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_flatpage ALTER COLUMN id SET DEFAULT nextval('public.django_flatpage_id_seq'::regclass);
+
+
+--
+-- Name: django_flatpage_sites id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_flatpage_sites ALTER COLUMN id SET DEFAULT nextval('public.django_flatpage_sites_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: django_site id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_site ALTER COLUMN id SET DEFAULT nextval('public.django_site_id_seq'::regclass);
+
+
+--
+-- Name: flatpage_main_newflatpage id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.flatpage_main_newflatpage ALTER COLUMN id SET DEFAULT nextval('public.flatpage_main_newflatpage_id_seq'::regclass);
+
+
+--
+-- Name: landing_pages_page variation_id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.landing_pages_page ALTER COLUMN variation_id SET DEFAULT nextval('public.landing_pages_page_variation_id_seq'::regclass);
+
+
+--
+-- Name: pages_page variation_id; Type: DEFAULT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.pages_page ALTER COLUMN variation_id SET DEFAULT nextval('public.pages_page_variation_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add post	7	add_post
+26	Can change post	7	change_post
+27	Can delete post	7	delete_post
+28	Can view post	7	view_post
+29	Can add Category	8	add_category
+30	Can change Category	8	change_category
+31	Can delete Category	8	delete_category
+32	Can view Category	8	view_category
+33	Can add campaign	9	add_campaign
+34	Can change campaign	9	change_campaign
+35	Can delete campaign	9	delete_campaign
+36	Can view campaign	9	view_campaign
+37	Can add tag	10	add_tag
+38	Can change tag	10	change_tag
+39	Can delete tag	10	delete_tag
+40	Can view tag	10	view_tag
+41	Can add page	11	add_page
+42	Can change page	11	change_page
+43	Can delete page	11	delete_page
+44	Can view page	11	view_page
+45	Can add profile	12	add_profile
+46	Can change profile	12	change_profile
+47	Can delete profile	12	delete_profile
+48	Can view profile	12	view_profile
+49	Can add site	13	add_site
+50	Can change site	13	change_site
+51	Can delete site	13	delete_site
+52	Can view site	13	view_site
+53	Can add flat page	14	add_flatpage
+54	Can change flat page	14	change_flatpage
+55	Can delete flat page	14	delete_flatpage
+56	Can view flat page	14	view_flatpage
+57	Can add Static Page	15	add_newflatpage
+58	Can change Static Page	15	change_newflatpage
+59	Can delete Static Page	15	delete_newflatpage
+60	Can view Static Page	15	view_newflatpage
+61	Can add page	16	add_page
+62	Can change page	16	change_page
+63	Can delete page	16	delete_page
+64	Can view page	16	view_page
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$260000$m4NpSE9pmgb5yOJyX4q52y$gED3Tr7MZSu4Z1xVWjYNQwb2NO6o0QBMiCrbK6KqY1E=	2021-06-25 19:31:59.616927+02	t	david	David	Kartuzinski	david@kaidawei.me	t	t	2021-06-11 19:21:56+02
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: blog_category; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.blog_category (id, name, slug) FROM stdin;
+1	Teaching	teaching
+2	Student Learning	student-learning
+\.
+
+
+--
+-- Data for Name: blog_post; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.blog_post (id, title, slug, header_image, post_content, intro, created_date, published_date, active, meta_description, author_id, category_id, status, updated, header_image_alt) FROM stdin;
+5	Effective teachers	effective-teachers	blog/2021/06/11/teachers-1.jpeg	<h1>Cur, nisi quod turpis oratio est?</h1>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Levatio igitur vitiorum magna fit in iis, qui habent ad virtutem progressionis aliquantum. <a href="http://loripsum.net/" target="_blank">Tamen a proposito, inquam, aberramus.</a> Septem autem illi non suo, sed populorum suffragio omnium nominati sunt. <em>Sed quae tandem ista ratio est?</em> Potius inflammat, ut coercendi magis quam dedocendi esse videantur. Sunt autem, qui dicant foedus esse quoddam sapientium, ut ne minus amicos quam se ipsos diligant. Duo Reges: constructio interrete. Hic ambiguo ludimur.</p>\r\n\r\n<p><strong>Quae cum essent dicta, discessimus.</strong> Commoda autem et incommoda in eo genere sunt, quae praeposita et reiecta diximus; Levatio igitur vitiorum magna fit in iis, qui habent ad virtutem progressionis aliquantum. <em>Quae diligentissime contra Aristonem dicuntur a Chryippo.</em> Si enim Zenoni licuit, cum rem aliquam invenisset inusitatam, inauditum quoque ei rei nomen inponere, cur non liceat Catoni? An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia? <strong>Quare attende, quaeso.</strong> <a href="http://loripsum.net/" target="_blank">Summum a vobis bonum voluptas dicitur.</a> Quae cum dixissem, Habeo, inquit Torquatus, ad quos ista referam, et, quamquam aliquid ipse poteram, tamen invenire malo paratiores. Progredientibus autem aetatibus sensim tardeve potius quasi nosmet ipsos cognoscimus. Expressa vero in iis aetatibus, quae iam confirmatae sunt. Ex eorum enim scriptis et institutis cum omnis doctrina liberalis, omnis historia. Bonum valitudo: miser morbus. Numquam hoc ita defendit Epicurus neque Metrodorus aut quisquam eorum, qui aut saperet aliquid aut ista didicisset.</p>\r\n\r\n<p>Itaque ne iustitiam quidem recte quis dixerit per se ipsam optabilem, sed quia iucunditatis vel plurimum afferat. <a href="http://loripsum.net/" target="_blank">Ille enim occurrentia nescio quae comminiscebatur;</a> Istud quidem, inquam, optime dicis, sed quaero nonne tibi faciendum idem sit nihil dicenti bonum, quod non rectum honestumque sit, reliquarum rerum discrimen omne tollenti. A quibus propter discendi cupiditatem videmus ultimas terras esse peragratas. Sed ille, ut dixi, vitiose. Atque etiam val&iacute;tudinem, vires, vacuitatem doloris non propter utilitatem solum, sed etiam ipsas propter se expetemus.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><img alt="teacher teaching students" src="/media/uploads/2021/06/11/teachers-2.jpeg" style="height:367px; width:450px" /></p>\r\n\r\n<p>Sed nimis multa.</p>\r\n\r\n<p>Audeo dicere, inquit.</p>\r\n\r\n<p>Frater et T.</p>\r\n\r\n<p>Facile est hoc cernere in primis puerorum aetatulis.</p>\r\n\r\n<p>Tria genera bonorum;</p>\r\n\r\n<p>Qui autem esse poteris, nisi te amor ipse ceperit?</p>\r\n\r\n<p>Idemne, quod iucunde?</p>\r\n\r\n<p>Tu enim ista lenius, hic Stoicorum more nos vexat.</p>\r\n\r\n<p>Itaque fecimus.</p>\r\n\r\n<p>Nec vero sum nescius esse utilitatem in historia, non modo voluptatem.</p>\r\n\r\n<p>Propter nos enim illam, non propter eam nosmet ipsos diligimus.</p>\r\n\r\n<p>Quae cum dixisset, finem ille. Nam si propter voluptatem, quae est ista laus, quae possit e macello peti? Quid affers, cur Thorius, cur Caius Postumius, cur omnium horum magister, Orata, non iucundissime vixerit? Quamquam id quidem, infinitum est in hac urbe; Quis est, qui non oderit libidinosam, protervam adolescentiam? Ab hoc autem quaedam non melius quam veteres, quaedam omnino relicta.</p>\r\n\r\n<p>Atque haec contra Aristippum, qui eam voluptatem non modo summam, sed solam etiam ducit, quam omnes unam appellamus voluptatem. Cur ipse Pythagoras et Aegyptum lustravit et Persarum magos adiit? <a href="http://loripsum.net/" target="_blank">Haec dicuntur fortasse ieiunius;</a> Nam bonum ex quo appellatum sit, nescio, praepositum ex eo credo, quod praeponatur aliis. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? <strong>Nihil illinc huc pervenit.</strong> Habent enim et bene longam et satis litigiosam disputationem. Quamquam tu hanc copiosiorem etiam soles dicere.</p>\r\n\r\n<h2>Tecum optime, deinde etiam cum mediocri amico.</h2>\r\n\r\n<p>At tu eadem ista dic in iudicio aut, si coronam times, dic in senatu. <a href="http://loripsum.net/" target="_blank">Teneo, inquit, finem illi videri nihil dolere.</a> Ad quorum et cognitionem et usum iam corroborati natura ipsa praeeunte deducimur. Fieri, inquam, Triari, nullo pacto potest, ut non dicas, quid non probes eius, a quo dissentias. <strong>Sed ea mala virtuti magnitudine obruebantur.</strong> Quid, si non modo utilitatem tibi nullam afferet, sed iacturae rei familiaris erunt faciendae, labores suscipiendi, adeundum vitae periculum? Atqui iste locus est, Piso, tibi etiam atque etiam confirmandus, inquam; At tu eadem ista dic in iudicio aut, si coronam times, dic in senatu. Nec enim, dum metuit, iustus est, et certe, si metuere destiterit, non erit; Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Sin dicit obscurari quaedam nec apparere, quia valde parva sint, nos quoque concedimus; Utrum igitur percurri omnem Epicuri disciplinam placet an de una voluptate quaeri, de qua omne certamen est? Qui enim existimabit posse se miserum esse beatus non erit. A quibus propter discendi cupiditatem videmus ultimas terras esse peragratas.</p>	<p>We discuss techniques by teachers to increase retention and usage in their students. Anyone teaching can learn these when teaching others.</p>	2021-06-11 20:26:15+02	2021-06-11 20:26:57+02	t	Effective teachers utilize specific techniques to help students retain and use new information being learned. Discover how this applies to you.	1	1	published	2021-06-15 19:32:15.04525+02	Teachers are in the background teaching students.
+1	Teaching without student breaks	teaching-without-student-breaks	blog/2021/06/11/employee-onboarding.jpeg	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nihil enim iam habes, quod ad corpus referas; <em>Sed haec omittamus;</em> <strong>In schola desinis.</strong> Duo Reges: constructio interrete. Prioris generis est docilitas, memoria; Quid turpius quam sapientis vitam ex insipientium sermone pendere? Itaque vides, quo modo loquantur, nova verba fingunt, deserunt usitata. <a href="http://loripsum.net/" rel="noopener" target="_blank">Et quod est munus, quod opus sapientiae?</a> <strong>Equidem e Cn.</strong> Quae duo sunt, unum facit.</p>\r\n\r\n<p>Tria genera bonorum;</p>\r\n\r\n<p>Atqui, inquam, Cato, si istud optinueris, traducas me ad te totum licebit.</p>\r\n\r\n<p>Quid de Pythagora?</p>\r\n\r\n<p>Sit hoc ultimum bonorum, quod nunc a me defenditur;</p>\r\n\r\n<p>Praeclare hoc quidem.</p>\r\n\r\n<p>Traditur, inquit, ab Epicuro ratio neglegendi doloris.</p>\r\n\r\n<p>Quid vero?</p>\r\n\r\n<p>Quaeque de virtutibus dicta sunt, quem ad modum eae semper voluptatibus inhaererent, eadem de amicitia dicenda sunt.</p>\r\n\r\n<p>Inde sermone vario sex illa a Dipylo stadia confecimus.</p>\r\n\r\n<p>Cuius quidem, quoniam Stoicus fuit, sententia condemnata mihi videtur esse inanitas ista verborum. Nec hoc ille non vidit, sed verborum magnificentia est et gloria delectatus. Alterum significari idem, ut si diceretur, officia media omnia aut pleraque servantem vivere. Restatis igitur vos; Quae ista amicitia est? Itaque et manendi in vita et migrandi ratio omnis iis rebus, quas supra dixi, metienda. Quid est, quod ab ea absolvi et perfici debeat? Graece donan, Latine voluptatem vocant.</p>\r\n\r\n<p>Nam et a te perfici istam disputationem volo, nec tua mihi oratio longa videri potest. Nunc haec primum fortasse audientis servire debemus. Ergo infelix una molestia, fellx rursus, cum is ipse anulus in praecordiis piscis inventus est? <strong>Sed ad bona praeterita redeamus.</strong> Quam ob rem tandem, inquit, non satisfacit? Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><img alt="" src="/media/uploads/2021/06/12/article-image.jpeg" style="height:367px; width:550px" /></p>\r\n\r\n<p>Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae sequuntur igitur? <em>Id Sextilius factum negabat.</em> Mihi quidem Antiochum, quem audis, satis belle videris attendere. <strong>Primum divisit ineleganter;</strong> Videamus animi partes, quarum est conspectus illustrior; Quod si ita sit, cur opera philosophiae sit danda nescio. Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; Quorum altera prosunt, nocent altera.</p>\r\n\r\n<p>Quid est, quod ab ea absolvi et perfici debeat? <a href="http://loripsum.net/" rel="noopener" target="_blank">Quid de Pythagora?</a> Quaero igitur, quo modo hae tantae commendationes a natura profectae subito a sapientia relictae sint. A primo, ut opinor, animantium ortu petitur origo summi boni. <em>Restinguet citius, si ardentem acceperit.</em> Propter nos enim illam, non propter eam nosmet ipsos diligimus. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Idem iste, inquam, de voluptate quid sentit?</p>	<p>Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt.&nbsp;</p>	2021-06-11 19:22:22+02	2021-06-11 19:24:50+02	t	Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. Quae sequuntur igi	1	2	published	2021-06-14 22:34:51.220705+02	Sorry, we're assholes and forgot to give you an image description.
+2	Some students need more and some less	some-students-need-more-and-some-less	blog/2021/06/11/effective-teacher.jpeg	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quodsi vultum tibi, si incessum fingeres, quo gravior viderere, non esses tui similis; Quid de Platone aut de Democrito loquar? <strong>Quis istum dolorem timet?</strong> Et nemo nimium beatus est; Traditur, inquit, ab Epicuro ratio neglegendi doloris. Duo Reges: constructio interrete. Fatebuntur Stoici haec omnia dicta esse praeclare, neque eam causam Zenoni desciscendi fuisse. Quod non faceret, si in voluptate summum bonum poneret. <strong>Quis hoc dicit?</strong> Quia dolori non voluptas contraria est, sed doloris privatio.</p>\r\n\r\n<p>Roges enim Aristonem, bonane ei videantur haec: vacuitas doloris, divitiae, valitudo; Nummus in Croesi divitiis obscuratur, pars est tamen divitiarum. <em>Quae cum dixisset, finem ille.</em> Quid autem habent admirationis, cum prope accesseris? Optime, inquam. Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. Cur fortior sit, si illud, quod tute concedis, asperum et vix ferendum putabit? In his igitur partibus duabus nihil erat, quod Zeno commutare gestiret. Si verbum sequimur, primum longius verbum praepositum quam bonum.</p>\r\n\r\n<p>Eam si varietatem diceres, intellegerem, ut etiam non dicente te intellego; Quod si ita se habeat, non possit beatam praestare vitam sapientia. An me, inquam, nisi te audire vellem, censes haec dicturum fuisse? Dici enim nihil potest verius. Quid ergo aliud intellegetur nisi uti ne quae pars naturae neglegatur?</p>\r\n\r\n<p>Et quae per vim oblatum stuprum volontaria morte lueret inventa est et qui interficeret filiam, ne stupraretur. In qua quid est boni praeter summam voluptatem, et eam sempiternam? Nos vero, inquit ille; Erat enim Polemonis. Non laboro, inquit, de nomine. Quoniam, si dis placet, ab Epicuro loqui discimus. <em>Ita graviter et severe voluptatem secrevit a bono.</em></p>\r\n\r\n<p>Sequitur disserendi ratio cognitioque naturae;</p>\r\n\r\n<p>Easdemne res?</p>\r\n\r\n<p>Se dicere inter honestum et turpe nimium quantum, nescio quid inmensum, inter ceteras res nihil omnino interesse.</p>\r\n\r\n<p>Beatum, inquit.</p>\r\n\r\n<p>Nam diligi et carum esse iucundum est propterea, quia tutiorem vitam et voluptatem pleniorem efficit.</p>\r\n\r\n<p>Tubulo putas dicere?</p>\r\n\r\n<p>Parvi enim primo ortu sic iacent, tamquam omnino sine animo sint.</p>\r\n\r\n<p>Tenent mordicus.</p>\r\n\r\n<p>Illud quaero, quid ei, qui in voluptate summum bonum ponat, consentaneum sit dicere.</p>\r\n\r\n<p>Certe, nisi voluptatem tanti aestimaretis. Nihil acciderat ei, quod nollet, nisi quod anulum, quo delectabatur, in mari abiecerat. Quod non faceret, si in voluptate summum bonum poneret. Omnia contraria, quos etiam insanos esse vultis. <strong>Facillimum id quidem est, inquam.</strong> Etenim semper illud extra est, quod arte comprehenditur. Illa tamen simplicia, vestra versuta. Eademne, quae restincta siti? <em>Hoc est non dividere, sed frangere.</em></p>	<p>Certe, nisi voluptatem tanti aestimaretis. Nihil acciderat ei, quod nollet, nisi quod anulum, quo delectabatur, in mari abiecerat. Quod non facere</p>	2021-06-11 19:26:24+02	2021-06-11 19:27:16+02	t	meta description	1	2	published	2021-06-14 22:42:29.262615+02	Sorry, we're assholes and forgot to give you an image description.
+3	Learning in sequence	learning-in-sequence	blog/2021/06/11/kids-playtime.jpeg	<p>I am just seeing. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gloriosa ostentatio in constituendo summo bono. Si enim ita est, vide ne facinus facias, cum mori suadeas. <em>Quae cum dixisset, finem ille.</em> Nam his libris eum malo quam reliquo ornatu villae delectari. Duo Reges: constructio interrete. <strong>Quae diligentissime contra Aristonem dicuntur a Chryippo.</strong> Oculorum, inquit Plato, est in nobis sensus acerrimus, quibus sapientiam non cernimus. Quare si potest esse beatus is, qui est in asperis reiciendisque rebus, potest is quoque esse. <strong>Rationis enim perfectio est virtus;</strong> <strong>Sequitur disserendi ratio cognitioque naturae;</strong> Sed residamus, inquit, si placet.</p>\r\n\r\n<p>Quia, si mala sunt, is, qui erit in iis, beatus non erit. <a href="http://loripsum.net/" target="_blank">Tibi hoc incredibile, quod beatissimum.</a> Quamquam id quidem, infinitum est in hac urbe; Pollicetur certe. Negat esse eam, inquit, propter se expetendam. <a href="http://loripsum.net/" target="_blank">Falli igitur possumus.</a> Potius inflammat, ut coercendi magis quam dedocendi esse videantur.</p>\r\n\r\n<ol>\r\n\t<li>Cur deinde Metrodori liberos commendas?</li>\r\n\t<li>Ex quo, id quod omnes expetunt, beate vivendi ratio inveniri et comparari potest.</li>\r\n</ol>\r\n\r\n<p><a href="http://loripsum.net/" target="_blank">Tum mihi Piso: Quid ergo?</a> Ad eos igitur converte te, quaeso. Vitae autem degendae ratio maxime quidem illis placuit quieta. Expectoque quid ad id, quod quaerebam, respondeas. Nunc agendum est subtilius. Tibi hoc incredibile, quod beatissimum. <a href="http://loripsum.net/" target="_blank">Sed ea mala virtuti magnitudine obruebantur.</a> Verum tamen cum de rebus grandioribus dicas, ipsae res verba rapiunt;</p>\r\n\r\n<p><em>Istam voluptatem perpetuam quis potest praestare sapienti?</em> Perturbationes autem nulla naturae vi commoventur, omniaque ea sunt opiniones ac iudicia levitatis.</p>\r\n\r\n<p><em>Haec para/doca illi, nos admirabilia dicamus.</em> Et ille ridens: Video, inquit, quid agas; Ut aliquid scire se gaudeant? <em>Rationis enim perfectio est virtus;</em> <strong>Comprehensum, quod cognitum non habet?</strong> <a href="http://loripsum.net/" target="_blank">Sed nunc, quod agimus;</a> Nam si amitti vita beata potest, beata esse non potest. Tu autem, si tibi illa probabantur, cur non propriis verbis ea tenebas?</p>\r\n\r\n<p>Quonam modo?</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>*****<img alt="picture of paris" src="/media/uploads/2021/06/11/paris.jpg" style="height:373px; width:559px" /></p>\r\n\r\n<p>Si ista mala sunt, in quae potest incidere sapiens, sapientem esse non esse ad beate vivendum satis.</p>\r\n\r\n<p>Ut pulsi recurrant?</p>\r\n\r\n<p>Id est enim, de quo quaerimus.</p>\r\n\r\n<p>Venit ad extremum;</p>\r\n\r\n<p>Profectus in exilium Tubulus statim nec respondere ausus;</p>	<p>Aristoxeni ingenium consumptum videmus in musicis? Hic nihil fuit, quod quaereremus. Murenam te accusante defenderem.&nbsp;</p>	2021-06-11 20:01:00+02	2021-06-11 20:02:19+02	t	meta description	1	2	published	2021-06-14 22:42:35.925003+02	Sorry, we're assholes and forgot to give you an image description.
+4	Employee onboarding and productivity	employee-onboarding-and-productivity	blog/2021/06/11/students.jpeg	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nimis multa. Id enim natura desiderat. At iam decimum annum in spelunca iacet. Pugnant Stoici cum Peripateticis. <a href="http://loripsum.net/" target="_blank">Duo Reges: constructio interrete.</a> Qui non moveatur et offensione turpitudinis et comprobatione honestatis?</p>\r\n\r\n<p>Age, inquies, ista parva sunt. <a href="http://loripsum.net/" target="_blank">Conferam tecum, quam cuique verso rem subicias;</a> Ita multa dicunt, quae vix intellegam. Sed nunc, quod agimus; Quantum Aristoxeni ingenium consumptum videmus in musicis? Hic nihil fuit, quod quaereremus. Murenam te accusante defenderem. Cum audissem Antiochum, Brute, ut solebam, cum M.</p>\r\n\r\n<p>Easdemne res?</p>\r\n\r\n<p>At Zeno eum non beatum modo, sed etiam divitem dicere ausus est.</p>\r\n\r\n<p>Quonam, inquit, modo?</p>\r\n\r\n<p>An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia?</p>\r\n\r\n<p>Audeo dicere, inquit.</p>\r\n\r\n<p>Nam si +omnino nos+ neglegemus, in Aristonea vitia incidemus et peccata obliviscemurque quae virtuti ipsi principia dederimus;</p>\r\n\r\n<p>Si quae forte-possumus.</p>\r\n\r\n<p>Plane idem, inquit, et maxima quidem, qua fieri nulla maior potest.</p>\r\n\r\n<p>Quare conare, quaeso. Consequens enim est et post oritur, ut dixi.</p>\r\n\r\n<p>Prioris generis est docilitas, memoria; Non laboro, inquit, de nomine.</p>\r\n\r\n<p>Tu autem inter haec tantam multitudinem hominum interiectam non vides nec laetantium nec dolentium?</p>\r\n\r\n<p>Dic in quovis conventu te omnia facere, ne doleas. Id mihi magnum videtur. Est enim effectrix multarum et magnarum voluptatum. Bonum integritas corporis: misera debilitas.</p>\r\n\r\n<p>Summum a vobis bonum voluptas dicitur. Sed haec omittamus; <strong>At hoc in eo M.</strong> Quae diligentissime contra Aristonem dicuntur a Chryippo. Videsne quam sit magna dissensio? Nihil illinc huc pervenit.</p>	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nimis multa. Id enim natura desiderat. At iam decimum annum in spelunca iacet.&nbsp;</p>	2021-06-11 20:03:54+02	2021-06-11 20:04:52+02	t	meta description	1	2	published	2021-06-14 22:42:41.795343+02	Sorry, we're assholes and forgot to give you an image description.
+6	Role of educators today	role-of-educators	blog/2021/06/11/role-of-educator.jpeg	<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<p><img alt="" src="/media/uploads/2021/06/11/role-of-educator-body.jpeg" style="height:300px; width:450px" /></p>\r\n\r\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n\r\n<h4>A heading to shift focus</h4>\r\n\r\n<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>\r\n\r\n<p>Aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n\r\n<div>&ldquo;We couldn&rsquo;t have done it without the hard-working team from Leap.&rdquo;</div>\r\n\r\n<p>&ndash; Harvey Dent (via Tareq I.)</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<h5>A minor heading to summarise</h5>\r\n\r\n<p>Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>\r\n\r\n<ul>\r\n\t<li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</li>\r\n\t<li>Corporis suscipit laboriosam</li>\r\n\t<li>Aspernatur aut odit aut fugit eos qui ratione</li>\r\n\t<li>Et quasi</li>\r\n</ul>	<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi neciunt.</p>	2021-06-11 23:34:00+02	2021-06-11 23:35:49+02	t	meta description	1	2	published	2021-06-20 01:16:42.629127+02	Sorry, we're assholes and forgot to give you an image description.
+\.
+
+
+--
+-- Data for Name: blog_profile; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.blog_profile (id, bio, profile_pic, user_id, twitter, author_website, github, instagram, linkedin, youtube, short_bio) FROM stdin;
+2	<p>David enjoys helping people and founded <a href="http://openapprentice.org">OpenApprentice.org&nbsp;</a>&nbsp;to help address inequalities in education.&nbsp;Nec enim, dum metuit, iustus est, et certe, si metuere destiterit, non erit; Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Sin dicit obscurari quaedam nec apparere, quia valde parva sint, nos quoque concedimus; Utrum igitur percurri omnem Epicuri disciplinam placet an de una voluptate quaeri?&nbsp;</p>	profiles-pics/david-face-1.JPG	1	kai_dawei	https://kaidawei.me	davidkartuzinski		kaidawei		<p>David enjoys helping people and founded <a href="http://openapprentice.org">OpenApprentice.org&nbsp;</a>&nbsp;to help address inequalities in education.&nbsp;</p>
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2021-06-11 19:22:41.413007+02	1	Teaching	1	[{"added": {}}]	8	1
+2	2021-06-11 19:25:25.272122+02	1	Teaching without students breaks	1	[{"added": {}}]	7	1
+3	2021-06-11 19:26:54.698012+02	2	Student Learning	1	[{"added": {}}]	8	1
+4	2021-06-11 19:27:17.96158+02	2	Some students need more and some less	1	[{"added": {}}]	7	1
+5	2021-06-11 19:27:33.226656+02	2	Some students need more and some less	2	[{"changed": {"fields": ["Intro"]}}]	7	1
+6	2021-06-11 20:02:22.71548+02	3	Learning in sequence	1	[{"added": {}}]	7	1
+7	2021-06-11 20:05:16.860983+02	4	Employee onboarding and productivity	1	[{"added": {}}]	7	1
+8	2021-06-11 20:05:57.94558+02	4	Employee onboarding and productivity	2	[]	7	1
+9	2021-06-11 20:06:26.98261+02	3	Learning in sequence	2	[{"changed": {"fields": ["Intro"]}}]	7	1
+10	2021-06-11 20:27:49.161939+02	5	Effective teachers	1	[{"added": {}}]	7	1
+11	2021-06-11 20:29:34.865776+02	5	Effective teachers	2	[{"changed": {"fields": ["Post content"]}}]	7	1
+12	2021-06-11 23:26:50.670997+02	3	Learning in sequence	2	[{"changed": {"fields": ["Post content"]}}]	7	1
+13	2021-06-11 23:31:57.516592+02	3	Learning in sequence	2	[{"changed": {"fields": ["Post content"]}}]	7	1
+14	2021-06-11 23:33:11.1035+02	3	Learning in sequence	2	[{"changed": {"fields": ["Post content"]}}]	7	1
+15	2021-06-11 23:35:52.487152+02	6	Role of educators	1	[{"added": {}}]	7	1
+16	2021-06-11 23:37:09.959773+02	6	Role of educators	2	[{"changed": {"fields": ["Post content"]}}]	7	1
+17	2021-06-11 23:44:03.371199+02	6	Role of educators	2	[{"changed": {"fields": ["Intro"]}}]	7	1
+18	2021-06-11 23:44:32.652727+02	6	Role of educators	2	[{"changed": {"fields": ["Post content"]}}]	7	1
+19	2021-06-12 00:00:39.762239+02	1	Teaching without student breaks	2	[{"changed": {"fields": ["Title", "Post slug", "Post content"]}}]	7	1
+20	2021-06-13 00:33:10.448504+02	1	Teaching without student breaks	2	[{"changed": {"fields": ["Status"]}}]	7	1
+21	2021-06-13 01:27:07.177027+02	1	Teaching without student breaks	2	[]	7	1
+22	2021-06-13 01:27:15.225667+02	2	Some students need more and some less	2	[{"changed": {"fields": ["Post content", "Status"]}}]	7	1
+23	2021-06-13 02:16:50.872568+02	1	david	2	[{"changed": {"fields": ["First name", "Last name"]}}]	4	1
+24	2021-06-13 12:40:41.514908+02	2	kaidawei	1	[{"added": {}}]	4	1
+25	2021-06-13 12:41:19.094647+02	2	kaidawei	2	[{"changed": {"fields": ["First name", "Last name", "Email address", "Staff status", "Superuser status", "User permissions"]}}]	4	1
+26	2021-06-13 12:45:00.596297+02	2	kaidawei	2	[]	4	1
+27	2021-06-13 12:47:50.417265+02	2	kaidawei	2	[]	4	1
+28	2021-06-13 12:53:08.096976+02	2	david	1	[{"added": {}}]	12	1
+29	2021-06-13 13:01:19.456297+02	1	Teaching without student breaks	2	[]	7	1
+30	2021-06-13 13:01:26.429249+02	2	Some students need more and some less	2	[]	7	1
+31	2021-06-13 13:17:03.234404+02	2	david	2	[{"changed": {"fields": ["Profile pic"]}}]	12	1
+32	2021-06-13 14:10:39.373157+02	1	kaidawei	3		12	1
+33	2021-06-13 14:10:52.851293+02	2	kaidawei	3		4	1
+34	2021-06-13 14:53:06.476578+02	1	ellieplatform.org	2	[{"changed": {"fields": ["Domain name", "Display name"]}}]	13	1
+35	2021-06-13 14:53:42.252051+02	6	Role of educators	2	[{"changed": {"fields": ["Status"]}}]	7	1
+36	2021-06-13 15:47:13.309447+02	1	/privacy-policy/ -- Privacy Policy	1	[{"added": {}}]	14	1
+37	2021-06-13 16:28:34.628193+02	2	/terms-and-conditions/ -- Terms and Conditions	1	[{"added": {}}]	14	1
+38	2021-06-13 16:34:46.787178+02	3	/home/ -- home	1	[{"added": {}}]	14	1
+39	2021-06-13 16:54:50.130257+02	3	/home/ -- home	2	[{"changed": {"fields": ["Content"]}}]	14	1
+40	2021-06-13 20:45:34.333261+02	1	Teaching without student breaks	2	[{"changed": {"fields": ["Category"]}}]	7	1
+41	2021-06-14 00:10:50.966112+02	3	Learning in sequence	2	[{"changed": {"fields": ["Status"]}}]	7	1
+42	2021-06-14 00:11:02.490802+02	5	Effective teachers	2	[{"changed": {"fields": ["Status"]}}]	7	1
+43	2021-06-14 00:11:09.759102+02	4	Employee onboarding and productivity	2	[{"changed": {"fields": ["Status"]}}]	7	1
+44	2021-06-14 22:21:46.978806+02	3	Learning in sequence	2	[{"changed": {"fields": ["Category"]}}]	7	1
+45	2021-06-14 22:22:08.573765+02	2	Some students need more and some less	2	[{"changed": {"fields": ["Category"]}}]	7	1
+46	2021-06-14 22:22:17.552907+02	1	Teaching without student breaks	2	[{"changed": {"fields": ["Category"]}}]	7	1
+47	2021-06-14 22:34:51.224631+02	1	Teaching without student breaks	2	[{"changed": {"fields": ["Category"]}}]	7	1
+48	2021-06-14 22:40:11.187766+02	6	Role of educators	2	[{"changed": {"fields": ["Status"]}}]	7	1
+49	2021-06-14 22:42:22.654804+02	6	Role of educators	2	[{"changed": {"fields": ["Category"]}}]	7	1
+50	2021-06-14 22:42:29.264946+02	2	Some students need more and some less	2	[{"changed": {"fields": ["Category"]}}]	7	1
+51	2021-06-14 22:42:35.926893+02	3	Learning in sequence	2	[{"changed": {"fields": ["Category"]}}]	7	1
+52	2021-06-14 22:42:41.798243+02	4	Employee onboarding and productivity	2	[{"changed": {"fields": ["Category"]}}]	7	1
+53	2021-06-14 22:42:58.722132+02	6	Role of educators	2	[{"changed": {"fields": ["Status"]}}]	7	1
+54	2021-06-15 19:04:22.94379+02	5	Effective teachers	2	[{"changed": {"fields": ["Meta description"]}}]	7	1
+55	2021-06-15 19:08:18.213156+02	5	Effective teachers	2	[{"changed": {"fields": ["Intro"]}}]	7	1
+56	2021-06-15 19:09:51.224626+02	5	Effective teachers	2	[{"changed": {"fields": ["Intro"]}}]	7	1
+57	2021-06-15 19:32:15.048107+02	5	Effective teachers	2	[{"changed": {"fields": ["Header image alt"]}}]	7	1
+58	2021-06-15 19:41:48.26244+02	2	david	2	[{"changed": {"fields": ["Twitter bio handle"]}}]	12	1
+59	2021-06-15 19:50:18.862744+02	2	david	2	[{"changed": {"fields": ["Twitter bio handle"]}}]	12	1
+60	2021-06-15 19:50:37.686525+02	2	david	2	[]	12	1
+61	2021-06-15 19:51:15.98096+02	2	david	2	[{"changed": {"fields": ["Twitter bio handle"]}}]	12	1
+62	2021-06-15 20:59:32.02995+02	2	david	2	[{"changed": {"fields": ["Author website"]}}]	12	1
+63	2021-06-15 23:16:02.032344+02	3	/home/ -- home	2	[]	14	1
+64	2021-06-15 23:51:40.544854+02	2	david	2	[{"changed": {"fields": ["Youtube handle", "Linkedin profile url", "Github url"]}}]	12	1
+65	2021-06-16 00:48:54.73005+02	2	david	2	[{"changed": {"fields": ["Twitter bio handle"]}}]	12	1
+66	2021-06-16 00:49:20.87159+02	2	david	2	[{"changed": {"fields": ["Youtube handle"]}}]	12	1
+67	2021-06-16 00:54:42.287775+02	2	david	2	[{"changed": {"fields": ["Linkedin profile url"]}}]	12	1
+68	2021-06-16 00:57:48.030938+02	2	david	2	[{"changed": {"fields": ["Instagram handle"]}}]	12	1
+69	2021-06-16 00:57:58.311813+02	2	david	2	[{"changed": {"fields": ["Github url"]}}]	12	1
+70	2021-06-16 01:23:43.172665+02	2	david	2	[{"changed": {"fields": ["Youtube handle", "Instagram handle"]}}]	12	1
+71	2021-06-16 01:29:13.18422+02	2	david	2	[{"changed": {"fields": ["Short bio"]}}]	12	1
+72	2021-06-16 01:29:51.441765+02	2	david	2	[{"changed": {"fields": ["Bio"]}}]	12	1
+73	2021-06-20 01:16:42.635419+02	6	Role of educators today	2	[{"changed": {"fields": ["Title"]}}]	7	1
+74	2021-06-21 00:27:30.172439+02	1	Ellie Features	1	[{"added": {}}]	11	1
+75	2021-06-21 00:28:20.549588+02	2	Ellie Use Cases	1	[{"added": {}}]	11	1
+76	2021-06-21 00:31:26.534565+02	1	Ellie Features	2	[]	11	1
+77	2021-06-21 00:35:02.514182+02	2	Ellie Use Cases	2	[]	11	1
+78	2021-06-21 00:35:04.76571+02	2	Ellie Use Cases	2	[]	11	1
+79	2021-06-21 00:37:30.624004+02	3	Ellie Features	1	[{"added": {}}]	11	1
+80	2021-06-22 12:36:56.688178+02	1	/privacy-policy/ -- Privacy Policy	2	[{"changed": {"fields": ["Content"]}}]	14	1
+81	2021-06-22 12:38:50.660191+02	1	/privacy-policy/ -- Privacy Policy	2	[]	14	1
+82	2021-06-22 12:39:15.55757+02	2	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"fields": ["Content"]}}]	14	1
+83	2021-06-22 12:41:46.905474+02	3	/home/ -- home	2	[{"changed": {"fields": ["Template name"]}}]	14	1
+84	2021-06-22 12:45:45.929045+02	3	/home/ -- home	2	[{"changed": {"fields": ["Content"]}}]	14	1
+85	2021-06-22 13:02:56.081782+02	3	/home/ -- home	2	[{"changed": {"fields": ["Content"]}}]	14	1
+86	2021-06-22 14:00:29.723521+02	3	/home/ -- home	2	[{"added": {"name": "Static Page", "object": "home"}}]	14	1
+87	2021-06-22 14:00:58.537782+02	3	/home/ -- home	3		14	1
+88	2021-06-22 14:01:29.274175+02	4	/home/ -- Home	1	[{"added": {}}, {"added": {"name": "Static Page", "object": "Home"}}]	14	1
+89	2021-06-22 14:02:19.73608+02	4	/home/ -- Home	2	[{"changed": {"fields": ["Template name"]}}]	14	1
+90	2021-06-22 14:02:34.632034+02	4	/home/ -- Home	2	[{"changed": {"fields": ["Template name"]}}]	14	1
+91	2021-06-22 16:19:45.107262+02	4	/home/ -- Home	2	[{"changed": {"name": "new flatpage", "object": "Home", "fields": ["Content section"]}}]	14	1
+92	2021-06-22 16:21:14.605547+02	1	/privacy-policy/ -- Privacy Policy	3		14	1
+93	2021-06-22 16:22:42.949048+02	5	/privacy-policy/ -- Privacy Page	1	[{"added": {}}, {"added": {"name": "new flatpage", "object": "Privacy Page"}}]	14	1
+94	2021-06-22 16:23:21.329179+02	2	/terms-and-conditions/ -- Terms and Conditions	3		14	1
+95	2021-06-22 16:23:32.10768+02	5	/privacy-policy/ -- Privacy Page	2	[{"changed": {"name": "new flatpage", "object": "Privacy Page", "fields": ["Content section"]}}]	14	1
+96	2021-06-22 16:24:00.168853+02	6	/terms-and-conditions/ -- Terms and Conditions	1	[{"added": {}}, {"added": {"name": "new flatpage", "object": "Terms and Conditions"}}]	14	1
+97	2021-06-22 16:24:25.727021+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"name": "new flatpage", "object": "Terms and Conditions", "fields": ["Content section"]}}]	14	1
+98	2021-06-22 16:25:45.479649+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"name": "new flatpage", "object": "Terms and Conditions", "fields": ["Content section"]}}]	14	1
+99	2021-06-22 22:34:32.124449+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"name": "new flatpage", "object": "Terms and Conditions", "fields": ["Content section"]}}]	14	1
+100	2021-06-22 22:37:30.356423+02	7	/MIT-license/ -- MIT License	1	[{"added": {}}, {"added": {"name": "new flatpage", "object": "MIT License"}}]	14	1
+101	2021-06-22 22:37:38.465675+02	7	/MIT-license/ -- MIT License	2	[]	14	1
+102	2021-06-22 22:38:46.894891+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[]	14	1
+103	2021-06-22 22:39:17.785786+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"name": "new flatpage", "object": "Terms and Conditions", "fields": ["Content section"]}}]	14	1
+104	2021-06-22 22:39:56.988799+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"name": "new flatpage", "object": "Terms and Conditions", "fields": ["Content section"]}}]	14	1
+105	2021-06-22 22:40:22.713013+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"fields": ["Template name"]}}]	14	1
+106	2021-06-22 22:40:38.789612+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"fields": ["Template name"]}}]	14	1
+107	2021-06-22 22:41:31.392164+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"fields": ["Template name"]}}, {"changed": {"name": "new flatpage", "object": "Terms and Conditions", "fields": ["Content section"]}}]	14	1
+108	2021-06-22 22:43:37.628971+02	7	/MIT-license/ -- MIT License	2	[{"changed": {"name": "new flatpage", "object": "MIT License", "fields": ["Content section"]}}]	14	1
+109	2021-06-22 22:44:12.860958+02	7	/MIT-license/ -- MIT License	2	[{"changed": {"name": "new flatpage", "object": "MIT License", "fields": ["Content section"]}}]	14	1
+110	2021-06-22 22:44:49.78164+02	7	/MIT-license/ -- MIT License	2	[{"changed": {"name": "new flatpage", "object": "MIT License", "fields": ["Content section"]}}]	14	1
+111	2021-06-22 22:51:32.890124+02	7	/MIT-license/ -- MIT License	2	[{"changed": {"name": "new flatpage", "object": "MIT License", "fields": ["Content section"]}}]	14	1
+112	2021-06-22 22:52:14.384045+02	7	/MIT-license/ -- MIT License	2	[{"changed": {"name": "new flatpage", "object": "MIT License", "fields": ["Content section"]}}]	14	1
+113	2021-06-22 22:52:36.126948+02	5	/privacy-policy/ -- Privacy Page	2	[{"changed": {"name": "new flatpage", "object": "Privacy Page", "fields": ["Content section"]}}]	14	1
+114	2021-06-22 22:52:53.766482+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"name": "new flatpage", "object": "Terms and Conditions", "fields": ["Content section"]}}]	14	1
+115	2021-06-22 22:53:24.496445+02	6	/terms-and-conditions/ -- Terms and Conditions	2	[{"changed": {"name": "new flatpage", "object": "Terms and Conditions", "fields": ["Content section"]}}]	14	1
+116	2021-06-22 22:57:23.507046+02	4	/home/ -- Home	2	[{"changed": {"name": "new flatpage", "object": "Home", "fields": ["Content section"]}}]	14	1
+117	2021-06-22 23:00:53.622542+02	4	/home/ -- Home	2	[{"changed": {"name": "new flatpage", "object": "Home", "fields": ["Content section"]}}]	14	1
+118	2021-06-22 23:03:07.246626+02	4	/home/ -- Home	2	[]	14	1
+119	2021-06-22 23:05:35.459929+02	8	/contact/ -- Contact Us	1	[{"added": {}}, {"added": {"name": "new flatpage", "object": "Contact Us"}}]	14	1
+120	2021-06-22 23:06:46.818425+02	8	/contact/ -- Contact Us	2	[{"changed": {"fields": ["Template name"]}}]	14	1
+121	2021-06-22 23:08:32.276714+02	8	/contact/ -- Contact Us	2	[{"changed": {"name": "new flatpage", "object": "Contact Us", "fields": ["Content section"]}}]	14	1
+122	2021-06-23 00:11:58.454927+02	9	/about/ -- About	1	[{"added": {}}, {"added": {"name": "new flatpage", "object": "About"}}]	14	1
+123	2021-06-23 00:46:37.842046+02	4	Start Free Trial	1	[{"added": {}}]	11	1
+124	2021-06-23 00:48:30.599683+02	4	Start Free Trial	2	[{"changed": {"fields": ["Beg page content"]}}]	11	1
+125	2021-06-23 00:52:53.429007+02	4	Start Free Trial	2	[{"changed": {"fields": ["Beg page content"]}}]	11	1
+126	2021-06-23 00:54:15.23206+02	4	Start Free Trial	2	[{"changed": {"fields": ["Beg page content"]}}]	11	1
+127	2021-06-23 01:34:46.563087+02	4	Start Free Trial	2	[{"changed": {"fields": ["Slug", "Beg page content"]}}]	11	1
+128	2021-06-23 01:37:51.091597+02	4	Start Free Trial	2	[]	11	1
+129	2021-06-23 12:53:16.09422+02	4	Start Free Trial	2	[{"changed": {"fields": ["Slug"]}}]	11	1
+130	2021-06-23 13:18:08.570021+02	4	Start Free Trial	2	[]	11	1
+131	2021-06-23 13:18:35.172432+02	4	Start Free Trial	2	[]	11	1
+132	2021-06-23 13:18:52.156878+02	4	Start Free Trial	2	[{"changed": {"fields": ["Created date", "Published date"]}}]	11	1
+133	2021-06-23 16:25:58.723329+02	3	Ellie Features-2	2	[{"changed": {"fields": ["Title"]}}]	11	1
+134	2021-06-25 23:13:29.056971+02	1	home	1	[{"added": {}}]	16	1
+135	2021-06-25 23:13:55.297054+02	2	Privacy Policy	1	[{"added": {}}]	16	1
+136	2021-06-25 23:14:17.016109+02	3	Terms and Conditions	1	[{"added": {}}]	16	1
+137	2021-06-25 23:15:04.463267+02	4	MIT License	1	[{"added": {}}]	16	1
+138	2021-06-25 23:15:19.214029+02	5	About	1	[{"added": {}}]	16	1
+139	2021-06-25 23:15:38.331289+02	6	Contact	1	[{"added": {}}]	16	1
+140	2021-06-25 23:16:17.655567+02	2	david	2	[]	12	1
+141	2021-06-25 23:23:31.300411+02	7	Start Free Trial	1	[{"added": {}}]	16	1
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	blog	post
+8	blog	category
+9	landing_pages	campaign
+10	landing_pages	tag
+11	landing_pages	page
+12	blog	profile
+13	sites	site
+14	flatpages	flatpage
+15	flatpage_main	newflatpage
+16	pages	page
+\.
+
+
+--
+-- Data for Name: django_flatpage; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.django_flatpage (id, url, title, content, enable_comments, template_name, registration_required) FROM stdin;
+7	/MIT-license/	MIT License		f		f
+5	/privacy-policy/	Privacy Page		f		f
+6	/terms-and-conditions/	Terms and Conditions		f		f
+4	/home/	Home		f	flatpages/index.html	f
+8	/contact/	Contact Us		f	flatpages/index.html	f
+9	/about/	About		f	flatpages/index.html	f
+\.
+
+
+--
+-- Data for Name: django_flatpage_sites; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.django_flatpage_sites (id, flatpage_id, site_id) FROM stdin;
+4	4	1
+5	5	1
+6	6	1
+7	7	1
+8	8	1
+9	9	1
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2021-06-11 15:50:26.40394+02
+2	auth	0001_initial	2021-06-11 15:50:26.465645+02
+3	admin	0001_initial	2021-06-11 15:50:26.486938+02
+4	admin	0002_logentry_remove_auto_add	2021-06-11 15:50:26.494284+02
+5	admin	0003_logentry_add_action_flag_choices	2021-06-11 15:50:26.501849+02
+6	contenttypes	0002_remove_content_type_name	2021-06-11 15:50:26.521394+02
+7	auth	0002_alter_permission_name_max_length	2021-06-11 15:50:26.531248+02
+8	auth	0003_alter_user_email_max_length	2021-06-11 15:50:26.542188+02
+9	auth	0004_alter_user_username_opts	2021-06-11 15:50:26.554475+02
+10	auth	0005_alter_user_last_login_null	2021-06-11 15:50:26.565127+02
+11	auth	0006_require_contenttypes_0002	2021-06-11 15:50:26.567519+02
+12	auth	0007_alter_validators_add_error_messages	2021-06-11 15:50:26.576085+02
+13	auth	0008_alter_user_username_max_length	2021-06-11 15:50:26.590696+02
+14	auth	0009_alter_user_last_name_max_length	2021-06-11 15:50:26.600048+02
+15	auth	0010_alter_group_name_max_length	2021-06-11 15:50:26.608319+02
+16	auth	0011_update_proxy_permissions	2021-06-11 15:50:26.617557+02
+17	auth	0012_alter_user_first_name_max_length	2021-06-11 15:50:26.626645+02
+18	blog	0001_initial	2021-06-11 15:50:26.664455+02
+19	blog	0002_auto_20210611_1354	2021-06-11 15:50:26.678656+02
+20	blog	0003_auto_20210611_1411	2021-06-11 15:50:26.70361+02
+21	blog	0004_alter_post_category	2021-06-11 15:50:26.726342+02
+23	sessions	0001_initial	2021-06-11 15:50:26.779025+02
+24	blog	0005_alter_post_header_image	2021-06-11 19:20:06.154444+02
+25	blog	0006_alter_post_post_content	2021-06-11 20:00:10.30282+02
+26	blog	0007_alter_post_intro	2021-06-11 20:03:45.989217+02
+27	blog	0008_alter_post_post_content	2021-06-11 20:24:17.13358+02
+28	blog	0009_auto_20210613_0024	2021-06-13 00:24:50.748043+02
+29	blog	0010_alter_post_author	2021-06-13 00:50:54.197163+02
+30	blog	0011_alter_post_author	2021-06-13 01:54:39.021381+02
+31	blog	0012_profile	2021-06-13 12:38:44.450078+02
+32	blog	0013_alter_profile_options	2021-06-13 12:43:49.768835+02
+33	blog	0014_alter_profile_profile_pic	2021-06-13 13:06:50.781799+02
+34	sites	0001_initial	2021-06-13 14:19:11.922696+02
+35	sites	0002_alter_domain_unique	2021-06-13 14:19:11.930867+02
+36	blog	0015_auto_20210613_1445	2021-06-13 14:45:21.171934+02
+37	flatpages	0001_initial	2021-06-13 15:19:26.44889+02
+38	blog	0002_post_header_image_alt	2021-06-15 19:29:27.752796+02
+39	blog	0003_profile_twitter_bio_handle	2021-06-15 19:40:53.110706+02
+40	blog	0004_auto_20210615_2059	2021-06-15 20:59:10.344201+02
+41	blog	0005_auto_20210615_2349	2021-06-15 23:49:44.995863+02
+42	blog	0006_auto_20210616_0127	2021-06-16 01:27:48.214503+02
+43	blog	0007_alter_profile_short_bio	2021-06-16 01:28:56.840182+02
+44	blog	0008_alter_post_author	2021-06-16 09:59:52.275715+02
+45	blog	0009_alter_profile_twitter_bio_handle	2021-06-16 10:27:38.019274+02
+46	blog	0010_auto_20210616_1041	2021-06-16 10:41:10.108842+02
+47	blog	0011_auto_20210620_0005	2021-06-20 00:05:49.009353+02
+50	landing_pages	0001_initial	2021-06-21 00:27:13.637619+02
+51	blog	0012_rename_twitter_bio_handle_profile_twitter_bio	2021-06-22 01:20:18.901758+02
+52	blog	0013_auto_20210622_0126	2021-06-22 01:27:02.322032+02
+53	blog	0014_rename_twitter_bio_profile_twitter	2021-06-22 01:32:37.303778+02
+54	flatpage_main	0001_initial	2021-06-22 13:58:44.030888+02
+55	flatpage_main	0002_auto_20210622_1405	2021-06-22 14:06:02.097654+02
+56	pages	0001_initial	2021-06-25 23:08:52.520201+02
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+421k4djq5a00rusrwpar8iy26c51uxty	.eJxVjEEOwiAQRe_C2hAKlJm6dO8ZyDBDpWpoUtqV8e7apAvd_vfef6lI21ri1vISJ1Fn1anT75aIH7nuQO5Ub7Pmua7LlPSu6IM2fZ0lPy-H-3dQqJVvPSRObDmDHYFMj-g8QXCdCeCTCARv0HFvxAEPHtGDRxJDDCkLjla9P9uLN64:1lrkrF:ClNmx2iQNqvpKgriRFolFtkLJtPQYFzlzyssuUl-958	2021-06-25 19:22:13.062911+02
+a5ljx10qbkdirooi1ey744us7aznlan8	.eJxVjEEOwiAQAP_C2RBhKbIevfsGsiyrVA0kpT0Z_25IetDrzGTeKtK2lrh1WeKc1VkZdfhlifgpdYj8oHpvmltdlznpkejddn1tWV6Xvf0bFOplbC0CJhDPiGI9ME3ivTsadwIDxmEAz5kppcxJboYEMgNNHjFYoaA-X9EmOAc:1lwpgN:6BhixE-B6mc8HxE9yNS4XNOrs6tiM4M33DogP9HYQKU	2021-07-09 19:31:59.630128+02
+\.
+
+
+--
+-- Data for Name: django_site; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.django_site (id, domain, name) FROM stdin;
+1	ellieplatform.org	ellieplatform.org
+\.
+
+
+--
+-- Data for Name: flatpage_main_newflatpage; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.flatpage_main_newflatpage (id, flatpage_id, content_section) FROM stdin;
+2	4	<section class="has-divider">\r\n<div class="container">\r\n<div class="row align-items-center justify-content-between o-hidden">\r\n<div class="col-md-6 order-sm-2 mb-5 mb-sm-0" data-aos="fade-left"><img alt="Image" src="assets/img/saas-3.svg" /></div>\r\n\r\n<div class="col-md-6 pr-xl-5 order-sm-1">\r\n<h1 class="display-4">Teach anyone, anything with Ellie</h1>\r\n\r\n<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>\r\n\r\n<form class="d-sm-flex mb-2 mt-4"><input class="form-control form-control-lg mr-sm-2 mb-2 mb-sm-0" placeholder="you@yoursite.com" type="email" /><button class="btn btn-lg btn-primary" type="submit">Get Started</button></form>\r\n<span class="text-small text-muted">Already using Leap? <a href="#">Sign In</a> </span></div>\r\n</div>\r\n</div>\r\n\r\n<div class="divider"><img alt="divider graphic" class="bg-primary-alt" data-inject-svg="" src="assets/img/dividers/divider-1.svg" /></div>\r\n</section>\r\n\r\n<section class="bg-primary-alt">\r\n<div class="container">\r\n<div class="row mb-4">\r\n<div class="col">\r\n<h2 class="h1">Multiple layouts for your SaaS</h2>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">\r\n<div class="card card-body">\r\n<div class="icon-round mb-3 mb-md-4 bg-primary"><img alt="icon" class="icon bg-primary" data-inject-svg="" src="assets/img/icons/theme/communication/chat-check.svg" /></div>\r\n\r\n<h4>Communication</h4>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>\r\n<a href="#">Learn More</a></div>\r\n</div>\r\n\r\n<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">\r\n<div class="card card-body">\r\n<div class="icon-round mb-3 mb-md-4 bg-primary"><img alt="icon" class="icon bg-primary" data-inject-svg="" src="assets/img/icons/theme/shopping/wallet-3.svg" /></div>\r\n\r\n<h4>Payments</h4>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>\r\n<a href="#">Learn More</a></div>\r\n</div>\r\n\r\n<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">\r\n<div class="card card-body">\r\n<div class="icon-round mb-3 mb-md-4 bg-primary"><img alt="icon" class="icon bg-primary" data-inject-svg="" src="assets/img/icons/theme/food/sushi.svg" /></div>\r\n\r\n<h4>Sushi</h4>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>\r\n<a href="#">Learn More</a></div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section>\r\n<div class="container">\r\n<div class="row justify-content-center text-center mb-6">\r\n<div class="col-xl-8 col-lg-9">\r\n<h2 class="display-4 mx-xl-6">Build it from the ground up.</h2>\r\n\r\n<p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>\r\n</div>\r\n</div>\r\n\r\n<div class="row justify-content-center mb-5">\r\n<div class="col-xl-11">\r\n<ul class="nav justify-content-center" role="tablist">\r\n\t<li class="nav-item mx-1">\r\n\t<div class="icon-round icon-round-sm bg-primary"><a aria-controls="saas-tab-1" aria-selected="true" class="nav-link active" data-toggle="tab" href="#saas-tab-1" role="tab"><img alt="box-2 icon" class="icon bg-primary" data-inject-svg="" src="assets/img/icons/theme/shopping/box-2.svg" /> </a></div>\r\n\t<a aria-controls="saas-tab-1" aria-selected="true" class="nav-link active" data-toggle="tab" href="#saas-tab-1" role="tab">Custom Dashboard </a></li>\r\n\t<li class="nav-item mx-1">\r\n\t<div class="icon-round icon-round-sm bg-primary"><a aria-controls="saas-tab-2" aria-selected="false" class="nav-link" data-toggle="tab" href="#saas-tab-2" role="tab"><img alt="chart-pie icon" class="icon bg-primary" data-inject-svg="" src="assets/img/icons/theme/shopping/chart-pie.svg" /> </a></div>\r\n\t<a aria-controls="saas-tab-2" aria-selected="false" class="nav-link" data-toggle="tab" href="#saas-tab-2" role="tab">Smart Analytics </a></li>\r\n\t<li class="nav-item mx-1">\r\n\t<div class="icon-round icon-round-sm bg-primary"><a aria-controls="saas-tab-3" aria-selected="false" class="nav-link" data-toggle="tab" href="#saas-tab-3" role="tab"><img alt="saturation icon" class="icon bg-primary" data-inject-svg="" src="assets/img/icons/theme/design/saturation.svg" /> </a></div>\r\n\t<a aria-controls="saas-tab-3" aria-selected="false" class="nav-link" data-toggle="tab" href="#saas-tab-3" role="tab">Dark Mode </a></li>\r\n</ul>\r\n</div>\r\n</div>\r\n\r\n<div class="row justify-content-center">\r\n<div class="col-xl-11" data-aos="fade-up">\r\n<div class="tab-content">\r\n<div aria-labelledby="saas-tab-1" class="tab-pane fade show active" id="saas-tab-1" role="tabpanel">\r\n<div class="popover-image">\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 25%; left: 10%;" title="Hotspot title">&nbsp;</div>\r\n\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 10%; left: 90%;" title="Hotspot title">&nbsp;</div>\r\n\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some more amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 90%; left: 20%;" title="Hotspot title">&nbsp;</div>\r\n<img alt="Image" class="rounded border shadow-lg" src="assets/img/saas-1.jpg" /></div>\r\n</div>\r\n\r\n<div aria-labelledby="saas-tab-2" class="tab-pane fade" id="saas-tab-2" role="tabpanel">\r\n<div class="popover-image">\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 25%; left: 90%;" title="Hotspot title">&nbsp;</div>\r\n\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 90%; left: 10%;" title="Hotspot title">&nbsp;</div>\r\n\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some more amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 30%; left: 60%;" title="Hotspot title">&nbsp;</div>\r\n<img alt="Image" class="rounded border shadow-lg" src="assets/img/saas-2.jpg" /></div>\r\n</div>\r\n\r\n<div aria-labelledby="saas-tab-3" class="tab-pane fade" id="saas-tab-3" role="tabpanel">\r\n<div class="popover-image">\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 2%; left: 2%;" title="Hotspot title">&nbsp;</div>\r\n\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 35%; left: 95%;" title="Hotspot title">&nbsp;</div>\r\n\r\n<div class="popover-hotspot bg-primary-2" data-content="And here's some more amazing content. It's very engaging. Right?" data-toggle="popover" style="top: 90%; left: 50%;" title="Hotspot title">&nbsp;</div>\r\n<img alt="Image" class="rounded border shadow-lg" src="assets/img/saas-3.jpg" /></div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="bg-primary-alt">\r\n<div class="container">\r\n<div class="row justify-content-between">\r\n<div class="col-xl-5 col-lg-6" data-aos="fade-right">\r\n<div class="row justify-content-center">\r\n<div class="col-md-8 col-lg mb-4 mb-lg-0"><img alt="Image" src="assets/img/saas-2.svg" /></div>\r\n</div>\r\n</div>\r\n\r\n<div class="col-lg-6">\r\n<h3 class="h1">Fits into your workflow</h3>\r\n\r\n<p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>\r\n\r\n<div class="row mt-5 o-hidden">\r\n<div class="col-sm-6" data-aos="fade-left" data-aos-delay="100"><a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"><img alt="icon" data-inject-svg="" src="assets/img/logos/product/invision.svg" /> </a>\r\n\r\n<div class="ml-3">\r\n<h5 class="mb-0"><a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#">Invision</a></h5>\r\n<a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"><span>Creative Tools</span> </a></div>\r\n<a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"> </a></div>\r\n\r\n<div class="col-sm-6" data-aos="fade-left" data-aos-delay="200"><a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"><img alt="icon" data-inject-svg="" src="assets/img/logos/product/dropbox.svg" /> </a>\r\n\r\n<div class="ml-3">\r\n<h5 class="mb-0"><a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#">Dropbox</a></h5>\r\n<a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"><span>Productivity</span> </a></div>\r\n<a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"> </a></div>\r\n\r\n<div class="col-sm-6" data-aos="fade-left" data-aos-delay="300"><a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"><img alt="icon" data-inject-svg="" src="assets/img/logos/product/slack.svg" /> </a>\r\n\r\n<div class="ml-3">\r\n<h5 class="mb-0"><a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#">Slack</a></h5>\r\n<a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"><span>Communication</span> </a></div>\r\n<a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"> </a></div>\r\n\r\n<div class="col-sm-6" data-aos="fade-left" data-aos-delay="400"><a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"><img alt="icon" data-inject-svg="" src="assets/img/logos/product/trello.svg" /> </a>\r\n\r\n<div class="ml-3">\r\n<h5 class="mb-0"><a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#">Trello</a></h5>\r\n<a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"><span>Productivity</span> </a></div>\r\n<a class="card card-sm card-body flex-row align-items-center hover-shadow-3d" href="#"> </a></div>\r\n</div>\r\n<a class="hover-arrow" href="#">View all Integrations</a></div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="has-divider bg-primary-alt">\r\n<div class="container pt-5">\r\n<div class="row justify-content-between align-items-center o-hidden">\r\n<div class="col-md-6 col-lg-5">\r\n<div class="d-flex mb-4" data-aos="fade-up" data-aos-delay="NaN">\r\n<div class="process-circle bg-primary">&nbsp;</div>\r\n\r\n<div class="ml-3">\r\n<h5>1. Purchase a license</h5>\r\n\r\n<p>Voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>\r\n</div>\r\n</div>\r\n\r\n<div class="d-flex mb-4" data-aos="fade-up" data-aos-delay="NaN">\r\n<div class="process-circle bg-primary">&nbsp;</div>\r\n\r\n<div class="ml-3">\r\n<h5>2. Build stunning sites</h5>\r\n\r\n<p>Voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>\r\n</div>\r\n</div>\r\n\r\n<div class="d-flex mb-4" data-aos="fade-up" data-aos-delay="NaN">\r\n<div class="process-circle bg-primary">&nbsp;</div>\r\n\r\n<div class="ml-3">\r\n<h5>3. Deploy and make money</h5>\r\n\r\n<p>Voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="col-md-6" data-aos="fade-left"><img alt="Image" src="assets/img/saas-4.svg" /></div>\r\n</div>\r\n</div>\r\n\r\n<div class="divider"><img alt="graphical divider" data-inject-svg="" src="assets/img/dividers/divider-2.svg" /></div>\r\n</section>\r\n\r\n<section>\r\n<div class="container">\r\n<div class="row justify-content-center text-center mb-6">\r\n<div class="col-xl-8 col-lg-9">\r\n<h2 class="display-4 mx-xl-6">How we stack up</h2>\r\n\r\n<p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>\r\n</div>\r\n</div>\r\n\r\n<div class="row justify-content-center">\r\n<div class="col-xl-10" data-aos="fade-up">\r\n<table class="table pricing-table pricing-table-competitors">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope="col">&nbsp;</th>\r\n\t\t\t<th class="bg-primary-alt" scope="col"><img alt="Image" src="assets/img/logo.svg" /></th>\r\n\t\t\t<th scope="col"><img alt="Image" src="assets/img/dropbox.svg" /></th>\r\n\t\t\t<th scope="col"><img alt="Image" src="assets/img/invision.svg" /></th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<th scope="row"><span class="h6 mb-0 d-block">Integrations</span></th>\r\n\t\t\t<td class="bg-primary-alt">\r\n\t\t\t<div class="icon-round icon-round-xs bg-success"><img alt="check interface icon" class="icon bg-light" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th scope="row"><span class="h6 mb-0 d-block">Segmentation</span></th>\r\n\t\t\t<td class="bg-primary-alt">\r\n\t\t\t<div class="icon-round icon-round-xs bg-success"><img alt="check interface icon" class="icon bg-light" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th scope="row"><span class="h6 mb-0 d-block">White Labelling</span></th>\r\n\t\t\t<td class="bg-primary-alt">\r\n\t\t\t<div class="icon-round icon-round-xs bg-success"><img alt="check interface icon" class="icon bg-light" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th scope="row"><span class="h6 mb-0 d-block">Document Signing</span></th>\r\n\t\t\t<td class="bg-primary-alt">\r\n\t\t\t<div class="icon-round icon-round-xs bg-success"><img alt="check interface icon" class="icon bg-light" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>&nbsp;</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th scope="row"><span class="h6 mb-0 d-block">Personalised Support</span></th>\r\n\t\t\t<td class="bg-primary-alt">\r\n\t\t\t<div class="icon-round icon-round-xs bg-success"><img alt="check interface icon" class="icon bg-light" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>&nbsp;</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th scope="row"><span class="h6 mb-0 d-block">Storage</span></th>\r\n\t\t\t<td class="bg-primary-alt">\r\n\t\t\t<div class="icon-round icon-round-xs bg-success"><img alt="check interface icon" class="icon bg-light" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>&nbsp;</td>\r\n\t\t\t<td>&nbsp;</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th scope="row"><span class="h6 mb-0 d-block">Funnels</span></th>\r\n\t\t\t<td class="bg-primary-alt">\r\n\t\t\t<div class="icon-round icon-round-xs bg-success"><img alt="check interface icon" class="icon bg-light" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<div class="icon-round icon-round-xs bg-primary-3-alt"><img alt="check interface icon" class="icon bg-primary-3" data-inject-svg="" src="assets/img/icons/interface/check.svg" /></div>\r\n\t\t\t</td>\r\n\t\t\t<td>&nbsp;</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<div class="text-right"><a class="hover-arrow" href="#">Explore all features</a></div>\r\n</div>\r\n</div>\r\n\r\n<div class="row justify-content-center mt-6">\r\n<div class="col-xl-7 col-lg-8 col-md-10">\r\n<div data-flickity="{ &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }">\r\n<div class="carousel-cell mx-md-4">\r\n<div class="card card-body flex-row py-4"><img alt="Avatar" class="avatar avatar-lg" src="assets/img/avatars/male-2.jpg" />\r\n<div class="ml-3">\r\n<h4>&ldquo;The team were only too happy to help me getting started.&rdquo;</h4>\r\n\r\n<div class="avatar-author d-block">\r\n<h6>Anil Kumar</h6>\r\n<span>Designer</span></div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="carousel-cell mx-md-4">\r\n<div class="card card-body flex-row py-4"><img alt="Avatar" class="avatar avatar-lg" src="assets/img/avatars/male-1.jpg" />\r\n<div class="ml-3">\r\n<h4>&ldquo;Once again, my expectations have been surpassed &ndash; Bravo!&rdquo;</h4>\r\n\r\n<div class="avatar-author d-block">\r\n<h6>Benjamin Cameronr</h6>\r\n<span>Designer</span></div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="carousel-cell mx-md-4">\r\n<div class="card card-body flex-row py-4"><img alt="Avatar" class="avatar avatar-lg" src="assets/img/avatars/female-4.jpg" />\r\n<div class="ml-3">\r\n<h4>&ldquo;What usually takes at least 2 or 3 weeks was reduced to 4 days.&rdquo;</h4>\r\n\r\n<div class="avatar-author d-block">\r\n<h6>Annabelle Porter</h6>\r\n<span>Designer</span></div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="p-0">\r\n<div class="container">\r\n<div class="row justify-content-center">\r\n<div class="col-xl-6 col-lg-7 col-md-8 mb-lg-n7 layer-2"><img alt="Image" data-aos="fade-up" src="assets/img/saas-1.svg" /></div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="bg-primary text-light has-divider">\r\n<div class="divider flip-y"><img alt="graphical divider" data-inject-svg="" src="assets/img/dividers/divider-3.svg" /></div>\r\n\r\n<div class="container">\r\n<div class="row justify-content-center mb-0 mb-md-3">\r\n<div class="col-xl-6 col-lg-8 col-md-10 text-center">\r\n<h3 class="h1">Power your team with Leap</h3>\r\n</div>\r\n</div>\r\n\r\n<div class="row justify-content-center text-center">\r\n<div class="col-xl-6 col-lg-7 col-md-9">\r\n<form class="d-md-flex mb-3 justify-content-center"><input class="mx-1 mb-2 mb-md-0 form-control form-control-lg" placeholder="Email Address" type="email" /><button class="mx-1 btn btn-primary-3 btn-lg" type="submit">Get Started</button></form>\r\n\r\n<div class="text-small text-muted mx-xl-6">Add some helper text here to explain the fine print details of your product or service.</div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>
+4	6	<section class="pt-0" data-reading-position="">\r\n<div class="container">\r\n<div class="row">\r\n<div class="col-auto">&nbsp;</div>\r\n\r\n<div class="col">\r\n<div class="row justify-content-center">\r\n<div class="col-xl-7 col-lg-8"><span class="text-muted">Updated Yesterday</span>\r\n\r\n<h1 class="my-2">Terms and Conditions</h1>\r\n\r\n<div>Version 1.2, Revision 6</div>\r\n\r\n<hr />\r\n<article class="article">\r\n<p class="lead">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n\r\n<h4>A heading to shift focus</h4>\r\n\r\n<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>\r\n\r\n<figure><img alt="Image" class="rounded" src="assets/img/article-9.jpg" />\r\n<figcaption>A caption to describe the image</figcaption>\r\n</figure>\r\n\r\n<p>Aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n\r\n<blockquote class="bg-primary-alt">\r\n<div class="h3 mb-2">&ldquo;We couldn&rsquo;t have done it without the hard-working team from Leap.&rdquo;</div>\r\n<span class="text-small text-muted">&ndash; Harvey Dent (via Tareq I.)</span> <a class="btn btn-primary btn-sm" href="#"> <img alt="twitter social icon" class="icon" data-inject-svg="" src="assets/img/icons/social/twitter.svg" /> <span>Tweet</span> </a></blockquote>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<h5>A minor heading to summarise</h5>\r\n\r\n<p>Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>\r\n\r\n<ul>\r\n\t<li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</li>\r\n\t<li>Corporis suscipit laboriosam</li>\r\n\t<li>Aspernatur aut odit aut fugit eos qui ratione</li>\r\n\t<li>Et quasi</li>\r\n</ul>\r\n</article>\r\n\r\n<hr />\r\n<h6>Fine Print</h6>\r\n<small>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.  Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</small>\r\n\r\n<hr /></div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>
+5	7	<section class="pt-0" data-reading-position="">\r\n<div class="container">\r\n<div class="row">\r\n<div class="col-auto">&nbsp;</div>\r\n\r\n<div class="col">\r\n<div class="row justify-content-center">\r\n<div class="col-xl-7 col-lg-8"><span class="text-muted">Updated Yesterday</span>\r\n\r\n<h1 class="my-2">MIT License</h1>\r\n\r\n<div>Version 1.2, Revision 6</div>\r\n\r\n<hr />\r\n<article class="article">\r\n<p class="lead">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n\r\n<h4>A heading to shift focus</h4>\r\n\r\n<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>\r\n\r\n<figure><img alt="Image" class="rounded" src="assets/img/article-9.jpg" />\r\n<figcaption>A caption to describe the image</figcaption>\r\n</figure>\r\n\r\n<p>Aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n\r\n<blockquote class="bg-primary-alt">\r\n<div class="h3 mb-2">&ldquo;We couldn&rsquo;t have done it without the hard-working team from Leap.&rdquo;</div>\r\n<span class="text-small text-muted">&ndash; Harvey Dent (via Tareq I.)</span> <a class="btn btn-primary btn-sm" href="#"> <img alt="twitter social icon" class="icon" data-inject-svg="" src="assets/img/icons/social/twitter.svg" /> <span>Tweet</span> </a></blockquote>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<h5>A minor heading to summarise</h5>\r\n\r\n<p>Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>\r\n\r\n<ul>\r\n\t<li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</li>\r\n\t<li>Corporis suscipit laboriosam</li>\r\n\t<li>Aspernatur aut odit aut fugit eos qui ratione</li>\r\n\t<li>Et quasi</li>\r\n</ul>\r\n</article>\r\n\r\n<hr />\r\n<h6>Fine Print</h6>\r\n<small>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.  Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</small>\r\n\r\n<hr /></div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>
+3	5	<section class="pt-0" data-reading-position="">\r\n<div class="container">\r\n<div class="row">\r\n<div class="col-auto">&nbsp;</div>\r\n\r\n<div class="col">\r\n<div class="row justify-content-center">\r\n<div class="col-xl-7 col-lg-8"><span class="text-muted">Updated Yesterday</span>\r\n\r\n<h1 class="my-2">Privacy Policy</h1>\r\n\r\n<div>Version 1.2, Revision 6</div>\r\n\r\n<hr />\r\n<article class="article">\r\n<p class="lead">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n\r\n<h4>A heading to shift focus</h4>\r\n\r\n<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>\r\n\r\n<figure><img alt="Image" class="rounded" src="assets/img/article-9.jpg" />\r\n<figcaption>A caption to describe the image</figcaption>\r\n</figure>\r\n\r\n<p>Aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\r\n\r\n<blockquote class="bg-primary-alt">\r\n<div class="h3 mb-2">&ldquo;We couldn&rsquo;t have done it without the hard-working team from Leap.&rdquo;</div>\r\n<span class="text-small text-muted">&ndash; Harvey Dent (via Tareq I.)</span> <a class="btn btn-primary btn-sm" href="#"> <img alt="twitter social icon" class="icon" data-inject-svg="" src="assets/img/icons/social/twitter.svg" /> <span>Tweet</span> </a></blockquote>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\r\n\r\n<h5>A minor heading to summarise</h5>\r\n\r\n<p>Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>\r\n\r\n<ul>\r\n\t<li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</li>\r\n\t<li>Corporis suscipit laboriosam</li>\r\n\t<li>Aspernatur aut odit aut fugit eos qui ratione</li>\r\n\t<li>Et quasi</li>\r\n</ul>\r\n</article>\r\n\r\n<hr />\r\n<h6>Fine Print</h6>\r\n<small>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.  Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</small>\r\n\r\n<hr /></div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>
+6	8	<section class="bg-primary-alt header-inner o-hidden">\r\n<div class="container layer-2 position-relative">\r\n<div class="row my-3">\r\n<div class="col">\r\n<nav aria-label="breadcrumb">\r\n<ol class="breadcrumb">\r\n\t<li class="breadcrumb-item"><a href="/">Home</a></li>\r\n\t<li aria-current="page" class="breadcrumb-item active">Contact Us</li>\r\n</ol>\r\n</nav>\r\n</div>\r\n</div>\r\n\r\n<div class="row py-6 text-center justify-content-center align-items-center">\r\n<div class="col-xl-8 col-lg-10">\r\n<h1 class="display-4">Get In Touch</h1>\r\n\r\n<p class="lead mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="divider layer-1"><img alt="graphical divider" data-inject-svg="" src="assets/img/dividers/divider-2.svg" /></div>\r\n\r\n<div class="decoration bottom left scale-3 d-none d-md-block" data-jarallax-element="100"><img alt="deco-blob-8 decoration" class="bg-primary" data-inject-svg="" src="assets/img/decorations/deco-blob-8.svg" /></div>\r\n\r\n<div class="decoration middle-y left scale-2 blend-mode-multiply d-none d-md-block" data-jarallax-element="200"><img alt="deco-ring-3 decoration" class="bg-primary-2" data-inject-svg="" src="assets/img/decorations/deco-ring-3.svg" /></div>\r\n\r\n<div class="decoration middle-y scale-2 right blend-mode-multiply d-none d-xl-block" data-jarallax-element="50 50"><img alt="deco-dots-6 decoration" class="bg-primary-3" data-inject-svg="" src="assets/img/decorations/deco-dots-6.svg" /></div>\r\n</section>\r\n\r\n<section>\r\n<div class="container">\r\n<div class="row justify-content-around">\r\n<div class="col-md-7 col-lg-6 mb-3 mb-md-0">\r\n<div class="min-vh-50 w-100 rounded shadow-3d" data-address="389 Greenpoint Ave, Crown Heights, Brooklyn New York" data-map-zoom="14" data-maps-api-key="INSERT_YOUR_GOOGLE_MAPS_API_KEY_HERE" data-marker-image="assets/img/map-marker-2.svg">\r\n<div class="map-marker" data-address="389 Greenpoint Ave, Crown Heights, Brooklyn, New York">\r\n<div class="info-window" data-max-width="400">\r\n<div class="container">\r\n<div class="row">\r\n<div class="col-12">\r\n<h5>Infowindows in Leap</h5>\r\n</div>\r\n\r\n<div class="col-4"><img alt="Leap Logo" class="w-100" src="assets/img/logo.svg" /></div>\r\n\r\n<div class="col-8 pb-2">\r\n<p>We&#39;ve made infowindows easy in Leap, so you can use any HTML in this infowindow on your map.</p>\r\n\r\n<h6 class="mb-0">Address</h6>\r\n\r\n<address>389 Greenpoint Ave Crown Heights, Brooklyn New York</address>\r\n<a href="#" target="_blank">... More Info</a></div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="col-md-4 col-lg-3">\r\n<h2>New York</h2>\r\n\r\n<div class="mb-3">\r\n<h6 class="mb-1">Address</h6>\r\n\r\n<address>389 Greenpoint Ave<br />\r\nCrown Heights, Brooklyn<br />\r\nNew York</address>\r\n</div>\r\n\r\n<div class="mb-3">\r\n<h6 class="mb-1">Phone</h6>\r\n<span>+61 4723 3827</span></div>\r\n\r\n<div class="mb-3">\r\n<h6 class="mb-1">Email</h6>\r\n<a href="#">ny@companyname.io</a></div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n\r\n\r\n<section class="pt-0">\r\n<div class="container">\r\n<div class="row justify-content-center">\r\n<div class="col-md-9 col-lg-8 col-xl-6">\r\n<div class="text-center mb-4">\r\n<h2 class="h1">Leave a message</h2>\r\n\r\n<p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>\r\n</div>\r\n\r\n<form action="/forms/smtp.php" data-form-email="" novalidate="">\r\n<div class="row">\r\n<div class="col-md-6">\r\n<div class="form-group"><label>Your Name *</label> <input class="form-control" name="contact-name" required="" type="text" />\r\n<div class="invalid-feedback">Please type your name.</div>\r\n</div>\r\n</div>\r\n\r\n<div class="col-md-6">\r\n<div class="form-group"><label>Email Address *</label> <input class="form-control" name="contact-email" placeholder="you@yoursite.com" required="" type="email" /></div>\r\n</div>\r\n\r\n<div class="col-md-6">\r\n<div class="form-group"><label>Company Name</label> <input class="form-control" name="contact-company" required="" type="text" /></div>\r\n</div>\r\n\r\n<div class="col-md-6">\r\n<div class="form-group"><label>Contact Number</label> <input class="form-control" name="contact-phone" required="" type="tel" /></div>\r\n</div>\r\n\r\n<div class="col-12">\r\n<div class="form-group"><label>Message:</label><textarea class="form-control" name="contact-message" placeholder="How can we help?" rows="10"></textarea></div>\r\n</div>\r\n\r\n<div class="col-12">\r\n<div data-recaptcha="" data-sitekey="INSERT_YOUR_RECAPTCHA_V2_SITEKEY_HERE">&nbsp;</div>\r\n</div>\r\n\r\n<div class="col">\r\n<div class="d-none alert alert-success" data-success-message="" role="alert">Thanks, a member of our team will be in touch shortly.</div>\r\n\r\n<div class="d-none alert alert-danger" data-error-message="" role="alert">Please fill all fields correctly.</div>\r\n<button class="btn btn-primary btn-loading" data-loading-text="Sending" type="submit"><img alt="loading icon" class="icon" data-inject-svg="" src="assets/img/icons/theme/code/loading.svg" /> <span>Send Enquiry</span></button></div>\r\n</div>\r\n</form>\r\n</div>\r\n</div>\r\n</div>\r\n</section>
+7	9	<section class="bg-dark text-light header-inner p-0 jarallax o-hidden" data-overlay data-jarallax data-speed="0.2">\r\n      <img src="assets/img/inner-1.jpg" alt="Image" class="jarallax-img opacity-30">\r\n      <div class="container py-0 layer-2">\r\n        <div class="row my-3">\r\n          <div class="col">\r\n            <nav aria-label="breadcrumb">\r\n              <ol class="breadcrumb">\r\n                <li class="breadcrumb-item">\r\n                  <a href="/">Home</a>\r\n                </li>\r\n                <li class="breadcrumb-item active" aria-current="page">About Us</li>\r\n              </ol>\r\n            </nav>\r\n          </div>\r\n        </div>\r\n        <div class="row my-4 my-md-6" data-aos="fade-up">\r\n          <div class="col-lg-9 col-xl-8">\r\n            <h1 class="display-4">About Us</h1>\r\n            <p class="lead mb-0">The Open Apprentice Foundation sponsors this Open Source MIT Licensed teaching and learning platform.</p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class="decoration-wrapper">\r\n        <div class="decoration bottom right d-none d-md-block" data-jarallax-element="100 100">\r\n          <img class="bg-primary-2" src="assets/img/decorations/deco-blob-1.svg" alt="deco-blob-1 decoration" data-inject-svg />\r\n        </div>\r\n      </div>\r\n      <div class="divider flip-x">\r\n        <img src="assets/img/dividers/divider-1.svg" alt="graphical divider" data-inject-svg />\r\n      </div>\r\n    </section>\r\n    <section>\r\n      <div class="container">\r\n        <div class="row mb-4">\r\n          <div class="col">\r\n            <h2>At a glance</h2>\r\n          </div>\r\n        </div>\r\n        <div class="row justify-content-center">\r\n          <div class="col-6 mb-3 col-lg-3 mb-lg-0" data-aos="fade-up" data-aos-delay="100">\r\n            <span class="display-4 text-primary d-block" data-countup data-start="4567" data-end="73000" data-duration="3" data-grouping="true"></span>\r\n            <span class="h6">Monthly Active Users</span>\r\n          </div>\r\n          <div class="col-6 mb-3 col-lg-3 mb-lg-0" data-aos="fade-up" data-aos-delay="200">\r\n            <span class="display-4 text-primary d-block" data-countup data-start="1" data-end="25" data-duration="3" data-grouping="true"></span>\r\n            <span class="h6">Team Members</span>\r\n          </div>\r\n          <div class="col-6 mb-3 col-lg-3 mb-lg-0" data-aos="fade-up" data-aos-delay="300">\r\n            <span class="display-4 text-primary d-block" data-countup data-start="1" data-end="5069" data-duration="3" data-grouping="true"></span>\r\n            <span class="h6">User Projects Published</span>\r\n          </div>\r\n          <div class="col-6 mb-3 col-lg-3 mb-lg-0" data-aos="fade-up" data-aos-delay="400">\r\n            <span class="display-4 text-primary d-block" data-countup data-start="1" data-end="99.9" data-decimal-places="1" data-duration="3" data-grouping="true" data-suffix="%"></span>\r\n            <span class="h6">Server Uptime</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </section>\r\n    <section>\r\n      <div class="container" data-aos="fade-up">\r\n        <div class="row align-items-center justify-content-around">\r\n          <div class="col-md-5 col-xl-6 mb-4 mb-md-0">\r\n            <img src="assets/img/inner-2.jpg" alt="Image" class="rounded shadow-3d">\r\n          </div>\r\n          <div class="col-md-7 col-xl-6">\r\n            <div class="row justify-content-center">\r\n              <div class="col-xl-8 col-lg-10">\r\n                <span class="badge badge-primary">Our Mission</span>\r\n                <div class="my-3">\r\n                  <span class="h1">Change the game through design.</span>\r\n                </div>\r\n                <p class="lead">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</p>\r\n                <p class="lead mb-0">Cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </section>\r\n    <section class="p-0">\r\n      <div class="container py-6">\r\n        <div class="row mb-4" data-aos="fade-up">\r\n          <div class="col">\r\n            <h2>Leadership Team</h2>\r\n          </div>\r\n        </div>\r\n        <div class="row mb-3">\r\n          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">\r\n            <div class="card card-lg card-body align-items-center">\r\n              <span class="badge badge-primary badge-top">Founder</span>\r\n              <img src="assets/img/avatars/female-1.jpg" alt="Kathleen Wong" class="avatar avatar-xlg mb-3">\r\n              <h5 class="mb-0">Kathleen Wong</h5>\r\n              <span>CEO</span>\r\n            </div>\r\n          </div>\r\n          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">\r\n            <div class="card card-lg card-body align-items-center">\r\n              <span class="badge badge-primary badge-top">Founder</span>\r\n              <img src="assets/img/avatars/male-2.jpg" alt="Anil Bhaktar" class="avatar avatar-xlg mb-3">\r\n              <h5 class="mb-0">Anil Bhaktar</h5>\r\n              <span>CTO</span>\r\n            </div>\r\n          </div>\r\n          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">\r\n            <div class="card card-lg card-body align-items-center">\r\n              <img src="assets/img/avatars/male-1.jpg" alt="Andrew Price" class="avatar avatar-xlg mb-3">\r\n              <h5 class="mb-0">Andrew Price</h5>\r\n              <span>Software Engineer</span>\r\n            </div>\r\n          </div>\r\n          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">\r\n            <div class="card card-lg card-body align-items-center">\r\n              <img src="assets/img/avatars/female-2.jpg" alt="Maya Sanders" class="avatar avatar-xlg mb-3">\r\n              <h5 class="mb-0">Maya Sanders</h5>\r\n              <span>Experience Designer</span>\r\n            </div>\r\n          </div>\r\n          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">\r\n            <div class="card card-lg card-body align-items-center">\r\n              <img src="assets/img/avatars/male-4.jpg" alt="Marco Schneider" class="avatar avatar-xlg mb-3">\r\n              <h5 class="mb-0">Marco Schneider</h5>\r\n              <span>Experience Designer</span>\r\n            </div>\r\n          </div>\r\n          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">\r\n            <div class="card card-lg card-body align-items-center">\r\n              <img src="assets/img/avatars/female-4.jpg" alt="Helena Price" class="avatar avatar-xlg mb-3">\r\n              <h5 class="mb-0">Helena Price</h5>\r\n              <span>Marketing</span>\r\n            </div>\r\n          </div>\r\n          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">\r\n            <div class="card card-lg card-body align-items-center">\r\n              <img src="assets/img/avatars/male-5.jpg" alt="Kenneth O'Dowd" class="avatar avatar-xlg mb-3">\r\n              <h5 class="mb-0">Kenneth O'Dowd</h5>\r\n              <span>Strategy</span>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class="row">\r\n          <div class="col">\r\n            <span>Interested in joining our team? <a href="#">View career openings</a>\r\n            </span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class="divider" style="">\r\n        <img class="decoration bg-primary-alt" src="assets/img/dividers/divider-3.svg" alt="divider graphic" data-inject-svg />\r\n      </div>\r\n    </section>\r\n    <section class="bg-primary-alt o-hidden">\r\n      <div class="container">\r\n        <div class="row mb-4">\r\n          <div class="col">\r\n            <h2>Our History</h2>\r\n          </div>\r\n        </div>\r\n        <div class="row o-hidden o-lg-visible">\r\n          <div class="col d-flex flex-column align-items-center">\r\n            <ol class="process-vertical">\r\n              <li data-aos="fade-left">\r\n                <div class="process-circle bg-primary"></div>\r\n                <div>\r\n                  <span class="text-small text-muted">October 2016</span>\r\n                  <h5 class="mb-0">Secured Series-A funding</h5>\r\n                </div>\r\n              </li>\r\n              <li data-aos="fade-right">\r\n                <div class="process-circle bg-primary"></div>\r\n                <div>\r\n                  <span class="text-small text-muted">April 2017</span>\r\n                  <h5 class="mb-0">New CTO: Joe Schultz</h5>\r\n                </div>\r\n              </li>\r\n              <li data-aos="fade-left">\r\n                <div class="process-circle bg-primary"></div>\r\n                <div>\r\n                  <span class="text-small text-muted">October 2017</span>\r\n                  <h5 class="mb-0">v1.0 Ships</h5>\r\n                </div>\r\n              </li>\r\n              <li data-aos="fade-right">\r\n                <div class="process-circle bg-primary"></div>\r\n                <div>\r\n                  <span class="text-small text-muted">February 2018</span>\r\n                  <h5 class="mb-0">Featured in Wired</h5>\r\n                </div>\r\n              </li>\r\n              <li data-aos="fade-left">\r\n                <div class="process-circle bg-primary"></div>\r\n                <div>\r\n                  <span class="text-small text-muted">September 2018</span>\r\n                  <h5 class="mb-0">v.20 Ships</h5>\r\n                </div>\r\n              </li>\r\n            </ol>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </section>
+\.
+
+
+--
+-- Data for Name: landing_pages_page; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.landing_pages_page (title, slug, beg_page_content, variation_id, variation_page_content, end_page_content, created_date, published_date, active, updated, status, meta_description) FROM stdin;
+Ellie Features	ellie-features	<p>This is the beginning or top part of your content.</p>	1	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-21 00:18:39+02	2021-06-21 00:18:59+02	t	2021-06-21 00:31:26.533141+02	published	meta description
+Ellie Use Cases	ellie-use-cases	<p>This is the beginning or top part of your content.</p>	2	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-21 00:27:52+02	2021-06-21 00:28:15+02	t	2021-06-21 00:35:04.764651+02	published	meta description
+Start Free Trial	start-free	<section class="bg-primary text-light o-hidden">\r\n<div class="container">\r\n<div class="row align-items-center min-vh-50">\r\n<div class="col-lg-6 text-center text-lg-left mb-4 mb-lg-0">\r\n<h1 class="display-3">Start your free trial with Ellie Professional</h1>\r\n\r\n<div class="my-4">\r\n<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\r\n</div>\r\n<a class="btn btn-lg btn-primary-2" href="#">Start a trial</a></div>\r\n\r\n<div class="col-lg-6 text-center" data-aos="fade-left"><img alt="Image" class="min-vw-60" src="assets/img/saas-sketch-1.svg" /></div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section>\r\n<div class="container">\r\n<div class="row justify-content-center text-center mb-6">\r\n<div class="col-xl-8 col-lg-9">\r\n<h2 class="display-4 mx-xl-6">Build it from the ground up.</h2>\r\n\r\n<p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>\r\n</div>\r\n</div>\r\n\r\n<div class="row text-center">\r\n<div class="col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100"><img alt="Image" class="mb-4" src="assets/img/saas-sketch-2.svg" />\r\n<h5>Authentication</h5>\r\n\r\n<p class="px-xl-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>\r\n<a class="hover-arrow" href="#">Learn More</a></div>\r\n\r\n<div class="col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="200"><img alt="Image" class="mb-4" src="assets/img/saas-sketch-3.svg" />\r\n<h5>Documentation</h5>\r\n\r\n<p class="px-xl-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>\r\n<a class="hover-arrow" href="#">Learn More</a></div>\r\n\r\n<div class="col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="300"><img alt="Image" class="mb-4" src="assets/img/saas-sketch-4.svg" />\r\n<h5>Virtual Reality</h5>\r\n\r\n<p class="px-xl-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>\r\n<a class="hover-arrow" href="#">Learn More</a></div>\r\n\r\n<div class="col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="400"><img alt="Image" class="mb-4" src="assets/img/saas-sketch-5.svg" />\r\n<h5>Product Roadmap</h5>\r\n\r\n<p class="px-xl-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>\r\n<a class="hover-arrow" href="#">Learn More</a></div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="bg-primary-3 text-light o-hidden">\r\n<div class="container layer-1">\r\n<div class="row justify-content-center text-center mb-6">\r\n<div class="col-xl-8 col-lg-9">\r\n<h2 class="display-4 mx-xl-6">Let&#39;s get started.</h2>\r\n\r\n<p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>\r\n</div>\r\n</div>\r\n\r\n<div class="row justify-content-center">\r\n<div class="col-xl-4 col-lg-5 col-md-6">\r\n<form>\r\n<div class="form-group"><label for="service-name-1">Your Name</label> <input class="form-control form-control-lg" id="service-name-1" name="service-name" placeholder="Type your name" type="text" /></div>\r\n\r\n<div class="form-group"><label for="service-email-1">Email Address</label> <input class="form-control form-control-lg" id="service-email-1" name="service-email" placeholder="you@yoursite.com" type="email" /></div>\r\n\r\n<div class="row">\r\n<div class="col-12">\r\n<div class="form-group mb-1"><label>Business Type:</label></div>\r\n</div>\r\n\r\n<div class="col">\r\n<div class="form-group rounded bg-white p-2">\r\n<div class="custom-control custom-radio"><input class="custom-control-input" id="service-radio-freelance-1" name="service-radio-1" type="radio" /> <label class="custom-control-label" for="service-radio-freelance-1">Freelancer</label></div>\r\n</div>\r\n</div>\r\n\r\n<div class="col">\r\n<div class="form-group rounded bg-white p-2">\r\n<div class="custom-control custom-radio"><input class="custom-control-input" id="service-radio-agency-1" name="service-radio-1" type="radio" /> <label class="custom-control-label" for="service-radio-agency-1">Agency</label></div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="form-group text-center"><button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Start your 14 day trial</button><small class="text-muted">Add some helper text here and link to your <a href="#">Privacy Policy</a> </small></div>\r\n</form>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div data-jarallax-element="0 50">\r\n<div class="decoration bottom left scale-3"><img alt="deco-blob-5 decoration" class="bg-primary-2" data-inject-svg="" src="assets/img/decorations/deco-blob-5.svg" /></div>\r\n</div>\r\n</section>\r\n\r\n<section class="bg-primary-2-alt o-hidden">\r\n<div class="container">\r\n<div class="row align-items-center justify-content-around">\r\n<div class="col-md-5 pr-xl-4 mb-4 mb-md-0">\r\n<h3 class="h1 text-primary-2">&ldquo;Leap is a feature rich design toolkit that made launching our startup dead simple.&rdquo;</h3>\r\n\r\n<div class="mb-3">Andrew Simmons, Founder of Unvest</div>\r\n<a class="hover-arrow" href="#">Read Customer Stories</a></div>\r\n\r\n<div class="col-xl-5 col-md-6" data-aos="fade-left"><img alt="Image" class="rounded shadow-lg layer-1" src="assets/img/saas-trend-1.jpg" />\r\n<div class="decoration top left scale-2 d-none d-md-block"><img alt="deco-blob-13 decoration" class="bg-primary-2" data-inject-svg="" src="assets/img/decorations/deco-blob-13.svg" /></div>\r\n\r\n<div class="decoration bottom middle-x scale-2"><img alt="deco-dots-3 decoration" class="bg-primary" data-inject-svg="" src="assets/img/decorations/deco-dots-3.svg" /></div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section>\r\n<div class="container">\r\n<div class="row justify-content-center text-center mb-6">\r\n<div class="col-xl-8 col-lg-9">\r\n<h2 class="display-4 mx-xl-6">Build it from the ground up.</h2>\r\n\r\n<p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">\r\n<div class="icon-round mb-3 mb-md-4 icon bg-primary"><a class="card card-icon-2 card-body justify-content-between hover-shadow-3d" href="#"><img alt="icon" class="icon bg-primary" data-inject-svg="" src="assets/img/icons/theme/general/user.svg" /> </a></div>\r\n\r\n<h5 class="mb-0"><a class="card card-icon-2 card-body justify-content-between hover-shadow-3d" href="#">Freelancing in the modern economy</a></h5>\r\n</div>\r\n\r\n<div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="200">\r\n<div class="icon-round mb-3 mb-md-4 icon bg-white"><a class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary text-light" href="#"><img alt="icon" class="icon bg-white" data-inject-svg="" src="assets/img/icons/theme/home/clock.svg" /> </a></div>\r\n\r\n<h5 class="mb-0"><a class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary text-light" href="#">Time management for creatives</a></h5>\r\n</div>\r\n\r\n<div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="300">\r\n<div class="icon-round mb-3 mb-md-4 icon bg-white"><a class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-2 text-light" href="#"><img alt="icon" class="icon bg-white" data-inject-svg="" src="assets/img/icons/theme/devices/mic.svg" /> </a></div>\r\n\r\n<h5 class="mb-0"><a class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-2 text-light" href="#">Marketing your unique skill-set</a></h5>\r\n</div>\r\n\r\n<div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="400">\r\n<div class="icon-round mb-3 mb-md-4 icon bg-white"><a class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-3 text-light" href="#"><img alt="icon" class="icon bg-white" data-inject-svg="" src="assets/img/icons/theme/devices/battery-half.svg" /> </a></div>\r\n\r\n<h5 class="mb-0"><a class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-3 text-light" href="#">Recharging your creativity</a></h5>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="pt-0">\r\n<div class="container">\r\n<div class="row justify-content-around align-items-center">\r\n<div class="col-6 col-md-5 mb-4 mb-md-0"><img alt="Image" src="assets/img/saas-sketch-6.svg" /></div>\r\n\r\n<div class="col-xl-5 col-md-6">\r\n<h3 class="h1">A modern product for modern times.</h3>\r\n\r\n<div class="mt-4 mb-3">\r\n<div class="border-bottom pb-3 mb-3">\r\n<div aria-expanded="true" class="accordion-panel-title" data-target="#panel-3" data-toggle="collapse" role="button"><span class="h6 mb-0">Superior Build Tools</span> <img alt="plus interface icon" class="icon" data-inject-svg="" src="assets/img/icons/interface/plus.svg" /></div>\r\n\r\n<div class="collapse show" id="panel-3">\r\n<div class="pt-3">\r\n<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="border-bottom pb-3 mb-3">\r\n<div aria-expanded="false" class="accordion-panel-title" data-target="#panel-4" data-toggle="collapse" role="button"><span class="h6 mb-0">Streamlined Workflow</span> <img alt="plus interface icon" class="icon" data-inject-svg="" src="assets/img/icons/interface/plus.svg" /></div>\r\n\r\n<div class="collapse" id="panel-4">\r\n<div class="pt-3">\r\n<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="border-bottom pb-3 mb-3">\r\n<div aria-expanded="false" class="accordion-panel-title" data-target="#panel-5" data-toggle="collapse" role="button"><span class="h6 mb-0">Award-winning Customer Support</span> <img alt="plus interface icon" class="icon" data-inject-svg="" src="assets/img/icons/interface/plus.svg" /></div>\r\n\r\n<div class="collapse" id="panel-5">\r\n<div class="pt-3">\r\n<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="text-small text-muted">Still have questions? <a class="hover-arrow" href="#">Get in touch</a></div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="pt-0 pb-4">\r\n<div class="container text-center">\r\n<div class="row mb-5">\r\n<div class="col">\r\n<h5>Trusted by over 30,000 of the world&rsquo;s leading companies</h5>\r\n</div>\r\n</div>\r\n\r\n<div class="row justify-content-center">\r\n<div class="col">\r\n<ul class="d-flex flex-wrap justify-content-center list-unstyled">\r\n\t<li class="mx-xl-4 mx-3 mb-5" data-aos="fade-up" data-aos-delay="100"><img alt="intercom logo large icon" class="icon icon-lg bg-primary-3 opacity-20" data-inject-svg="" src="assets/img/logos/brand/intercom.svg" /></li>\r\n\t<li class="mx-xl-4 mx-3 mb-5" data-aos="fade-up" data-aos-delay="200"><img alt="slack logo large icon" class="icon icon-lg bg-primary-3 opacity-20" data-inject-svg="" src="assets/img/logos/brand/slack.svg" /></li>\r\n\t<li class="mx-xl-4 mx-3 mb-5" data-aos="fade-up" data-aos-delay="300"><img alt="spotify logo large icon" class="icon icon-lg bg-primary-3 opacity-20" data-inject-svg="" src="assets/img/logos/brand/spotify.svg" /></li>\r\n\t<li class="mx-xl-4 mx-3 mb-5" data-aos="fade-up" data-aos-delay="400"><img alt="target logo large icon" class="icon icon-lg bg-primary-3 opacity-20" data-inject-svg="" src="assets/img/logos/brand/target.svg" /></li>\r\n</ul>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="bg-primary-2-alt">\r\n<div class="container">\r\n<div class="row mb-4">\r\n<div class="col">\r\n<h3 class="h1">Stay in the loop</h3>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">\r\n<div class="d-flex justify-content-between mb-3">\r\n<div class="text-small d-flex">\r\n<div class="mr-2"><a class="card card-body justify-content-between bg-primary text-light" href="#">Links </a></div>\r\n<a class="card card-body justify-content-between bg-primary text-light" href="#"><span class="opacity-70">19th December</span> </a></div>\r\n<a class="card card-body justify-content-between bg-primary text-light" href="#"><span class="badge bg-primary-alt text-primary"><img alt="heart interface icon" class="icon icon-sm bg-primary" data-inject-svg="" src="assets/img/icons/interface/heart.svg" />27 </span> </a></div>\r\n\r\n<div>\r\n<h2><a class="card card-body justify-content-between bg-primary text-light" href="#">A time-tracking app that isn&rsquo;t a pain.</a></h2>\r\n<a class="card card-body justify-content-between bg-primary text-light" href="#"><span class="text-small opacity-70">http://www.website.io/link</span> </a></div>\r\n</div>\r\n\r\n<div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">\r\n<div class="card"><a href="#"><img alt="Image" class="card-img-top" src="assets/img/article-1.jpg" /> </a>\r\n\r\n<div class="card-body d-flex flex-column">\r\n<div class="d-flex justify-content-between mb-3">\r\n<div class="text-small d-flex">\r\n<div class="mr-2"><a href="#">Business</a></div>\r\n<span class="text-muted">29th November</span></div>\r\n<span class="badge bg-primary-alt text-primary"><img alt="heart interface icon" class="icon icon-sm bg-primary" data-inject-svg="" src="assets/img/icons/interface/heart.svg" />12 </span></div>\r\n\r\n<h4><a href="#">How to build collateral</a></h4>\r\n\r\n<p class="flex-grow-1">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>\r\n\r\n<div class="d-flex align-items-center mt-3"><img alt="Image" class="avatar avatar-sm" src="assets/img/avatars/female-3.jpg" />\r\n<div class="ml-1"><span class="text-small text-muted">By</span> <span class="text-small">Abby Sims</span></div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="300">\r\n<div class="card"><a href="#"><img alt="Image" class="card-img-top" src="assets/img/article-2.jpg" /> </a>\r\n\r\n<div class="card-body d-flex flex-column">\r\n<div class="d-flex justify-content-between mb-3">\r\n<div class="text-small d-flex">\r\n<div class="mr-2"><a href="#">Design</a></div>\r\n<span class="text-muted">27th November</span></div>\r\n<span class="badge bg-primary-alt text-primary"><img alt="heart interface icon" class="icon icon-sm bg-primary" data-inject-svg="" src="assets/img/icons/interface/heart.svg" />23 </span></div>\r\n\r\n<h4><a href="#">Forging your path</a></h4>\r\n\r\n<p class="flex-grow-1">Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>\r\n\r\n<div class="d-flex align-items-center mt-3"><img alt="Image" class="avatar avatar-sm" src="assets/img/avatars/male-4.jpg" />\r\n<div class="ml-1"><span class="text-small text-muted">By</span> <span class="text-small">Cedric</span></div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="col"><a class="hover-arrow" href="#">View more news</a></div>\r\n</div>\r\n</div>\r\n</section>\r\n\r\n<section class="bg-primary-3 text-light o-hidden">\r\n<div class="container layer-1">\r\n<div class="row justify-content-center text-center mb-6">\r\n<div class="col-xl-8 col-lg-9">\r\n<h2 class="display-4 mx-xl-6">Let&#39;s get started.</h2>\r\n\r\n<p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>\r\n</div>\r\n</div>\r\n\r\n<div class="row justify-content-center">\r\n<div class="col-xl-4 col-lg-5 col-md-6">\r\n<form>\r\n<div class="form-group"><label for="service-name-1">Your Name</label> <input class="form-control form-control-lg" id="service-name-1" name="service-name" placeholder="Type your name" type="text" /></div>\r\n\r\n<div class="form-group"><label for="service-email-1">Email Address</label> <input class="form-control form-control-lg" id="service-email-1" name="service-email" placeholder="you@yoursite.com" type="email" /></div>\r\n\r\n<div class="row">\r\n<div class="col-12">\r\n<div class="form-group mb-1"><label>Business Type:</label></div>\r\n</div>\r\n\r\n<div class="col">\r\n<div class="form-group rounded bg-white p-2">\r\n<div class="custom-control custom-radio"><input class="custom-control-input" id="service-radio-freelance-1" name="service-radio-1" type="radio" /> <label class="custom-control-label" for="service-radio-freelance-1">Freelancer</label></div>\r\n</div>\r\n</div>\r\n\r\n<div class="col">\r\n<div class="form-group rounded bg-white p-2">\r\n<div class="custom-control custom-radio"><input class="custom-control-input" id="service-radio-agency-1" name="service-radio-1" type="radio" /> <label class="custom-control-label" for="service-radio-agency-1">Agency</label></div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="form-group text-center"><button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Start your 14 day trial</button><small class="text-muted">Add some helper text here and link to your <a href="#">Privacy Policy</a> </small></div>\r\n</form>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div data-jarallax-element="0 50">\r\n<div class="decoration bottom left scale-3"><img alt="deco-blob-5 decoration" class="bg-primary-2" data-inject-svg="" src="assets/img/decorations/deco-blob-5.svg" /></div>\r\n</div>\r\n</section>	4	<p>.</p>	<p>.</p>	2021-06-22 00:41:46+02	2021-06-22 00:45:18+02	t	2021-06-23 13:18:52.154816+02	published	meta description
+Ellie Features-2	ellie-features-2	<p>This is the beginning or top part of your content.</p>	3	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-21 00:18:39+02	2021-06-21 00:18:59+02	t	2021-06-23 16:25:58.722034+02	published	meta description
+\.
+
+
+--
+-- Data for Name: pages_page; Type: TABLE DATA; Schema: public; Owner: madamellie
+--
+
+COPY public.pages_page (title, slug, beg_page_content, variation_id, variation_page_content, end_page_content, created_date, published_date, active, updated, status, meta_description) FROM stdin;
+home	home	<p>This is the beginning or top part of your content.</p>	1	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-25 23:13:11+02	2021-06-25 23:13:22+02	t	2021-06-25 23:13:29.053788+02	published	meta description
+Privacy Policy	privacy-policy	<p>This is the beginning or top part of your content.</p>	2	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-25 23:13:29+02	2021-06-25 23:13:50+02	t	2021-06-25 23:13:55.296107+02	published	meta description
+Terms and Conditions	terms-and-conditions	<p>This is the beginning or top part of your content.</p>	3	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-25 23:13:55+02	2021-06-25 23:14:11+02	t	2021-06-25 23:14:17.014981+02	published	meta description
+MIT License	MIT-license	<p>This is the beginning or top part of your content.</p>	4	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-25 23:14:17+02	2021-06-25 23:15:01+02	t	2021-06-25 23:15:04.461587+02	published	meta description
+About	about	<p>This is the beginning or top part of your content.</p>	5	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-25 23:15:04+02	2021-06-25 23:15:17+02	t	2021-06-25 23:15:19.212547+02	published	meta description
+Contact	contact	<p>This is the beginning or top part of your content.</p>	6	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-25 23:15:19+02	2021-06-25 23:15:32+02	t	2021-06-25 23:15:38.327867+02	published	meta description
+Start Free Trial	start-free	<p>This is the beginning or top part of your content.</p>	7	<p>This is the variation content. Make a version here and another in a different page.</p>	<p>This is the end or bottom part of your content.</p>	2021-06-25 23:23:05+02	2021-06-25 23:23:27+02	t	2021-06-25 23:23:31.298665+02	published	meta description
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 64, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 2, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 48, true);
+
+
+--
+-- Name: blog_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.blog_category_id_seq', 2, true);
+
+
+--
+-- Name: blog_post_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.blog_post_id_seq', 6, true);
+
+
+--
+-- Name: blog_profile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.blog_profile_id_seq', 2, true);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 141, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 16, true);
+
+
+--
+-- Name: django_flatpage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.django_flatpage_id_seq', 9, true);
+
+
+--
+-- Name: django_flatpage_sites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.django_flatpage_sites_id_seq', 9, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 56, true);
+
+
+--
+-- Name: django_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.django_site_id_seq', 1, true);
+
+
+--
+-- Name: flatpage_main_newflatpage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.flatpage_main_newflatpage_id_seq', 7, true);
+
+
+--
+-- Name: landing_pages_page_variation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.landing_pages_page_variation_id_seq', 4, true);
+
+
+--
+-- Name: pages_page_variation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: madamellie
+--
+
+SELECT pg_catalog.setval('public.pages_page_variation_id_seq', 7, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: blog_category blog_category_name_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_category
+    ADD CONSTRAINT blog_category_name_key UNIQUE (name);
+
+
+--
+-- Name: blog_category blog_category_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_category
+    ADD CONSTRAINT blog_category_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_category blog_category_slug_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_category
+    ADD CONSTRAINT blog_category_slug_key UNIQUE (slug);
+
+
+--
+-- Name: blog_post blog_post_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_post
+    ADD CONSTRAINT blog_post_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_post blog_post_post_slug_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_post
+    ADD CONSTRAINT blog_post_post_slug_key UNIQUE (slug);
+
+
+--
+-- Name: blog_profile blog_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_profile
+    ADD CONSTRAINT blog_profile_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blog_profile blog_profile_user_id_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_profile
+    ADD CONSTRAINT blog_profile_user_id_key UNIQUE (user_id);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_flatpage django_flatpage_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_flatpage
+    ADD CONSTRAINT django_flatpage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_flatpage_sites django_flatpage_sites_flatpage_id_site_id_0d29d9d1_uniq; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_flatpage_sites
+    ADD CONSTRAINT django_flatpage_sites_flatpage_id_site_id_0d29d9d1_uniq UNIQUE (flatpage_id, site_id);
+
+
+--
+-- Name: django_flatpage_sites django_flatpage_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_flatpage_sites
+    ADD CONSTRAINT django_flatpage_sites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: django_site django_site_domain_a2e37b91_uniq; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_site
+    ADD CONSTRAINT django_site_domain_a2e37b91_uniq UNIQUE (domain);
+
+
+--
+-- Name: django_site django_site_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_site
+    ADD CONSTRAINT django_site_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: flatpage_main_newflatpage flatpage_main_newflatpage_flatpage_id_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.flatpage_main_newflatpage
+    ADD CONSTRAINT flatpage_main_newflatpage_flatpage_id_key UNIQUE (flatpage_id);
+
+
+--
+-- Name: flatpage_main_newflatpage flatpage_main_newflatpage_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.flatpage_main_newflatpage
+    ADD CONSTRAINT flatpage_main_newflatpage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: landing_pages_page landing_pages_page_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.landing_pages_page
+    ADD CONSTRAINT landing_pages_page_pkey PRIMARY KEY (variation_id);
+
+
+--
+-- Name: landing_pages_page landing_pages_page_slug_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.landing_pages_page
+    ADD CONSTRAINT landing_pages_page_slug_key UNIQUE (slug);
+
+
+--
+-- Name: pages_page pages_page_pkey; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.pages_page
+    ADD CONSTRAINT pages_page_pkey PRIMARY KEY (variation_id);
+
+
+--
+-- Name: pages_page pages_page_slug_key; Type: CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.pages_page
+    ADD CONSTRAINT pages_page_slug_key UNIQUE (slug);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: blog_category_name_92eb1483_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX blog_category_name_92eb1483_like ON public.blog_category USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: blog_category_slug_92643dc5_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX blog_category_slug_92643dc5_like ON public.blog_category USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: blog_post_author_id_dd7a8485; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX blog_post_author_id_dd7a8485 ON public.blog_post USING btree (author_id);
+
+
+--
+-- Name: blog_post_category_id_c326dbf8; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX blog_post_category_id_c326dbf8 ON public.blog_post USING btree (category_id);
+
+
+--
+-- Name: blog_post_post_slug_f2581d6d_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX blog_post_post_slug_f2581d6d_like ON public.blog_post USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_flatpage_sites_flatpage_id_078bbc8b; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_flatpage_sites_flatpage_id_078bbc8b ON public.django_flatpage_sites USING btree (flatpage_id);
+
+
+--
+-- Name: django_flatpage_sites_site_id_bfd8ea84; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_flatpage_sites_site_id_bfd8ea84 ON public.django_flatpage_sites USING btree (site_id);
+
+
+--
+-- Name: django_flatpage_url_41612362; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_flatpage_url_41612362 ON public.django_flatpage USING btree (url);
+
+
+--
+-- Name: django_flatpage_url_41612362_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_flatpage_url_41612362_like ON public.django_flatpage USING btree (url varchar_pattern_ops);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: django_site_domain_a2e37b91_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX django_site_domain_a2e37b91_like ON public.django_site USING btree (domain varchar_pattern_ops);
+
+
+--
+-- Name: landing_pages_page_slug_67008123_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX landing_pages_page_slug_67008123_like ON public.landing_pages_page USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: pages_page_slug_770723b9_like; Type: INDEX; Schema: public; Owner: madamellie
+--
+
+CREATE INDEX pages_page_slug_770723b9_like ON public.pages_page USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_post blog_post_author_id_dd7a8485_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_post
+    ADD CONSTRAINT blog_post_author_id_dd7a8485_fk_auth_user_id FOREIGN KEY (author_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_post blog_post_category_id_c326dbf8_fk_blog_category_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_post
+    ADD CONSTRAINT blog_post_category_id_c326dbf8_fk_blog_category_id FOREIGN KEY (category_id) REFERENCES public.blog_category(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_profile blog_profile_user_id_2bc46caa_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.blog_profile
+    ADD CONSTRAINT blog_profile_user_id_2bc46caa_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_flatpage_sites django_flatpage_site_flatpage_id_078bbc8b_fk_django_fl; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_flatpage_sites
+    ADD CONSTRAINT django_flatpage_site_flatpage_id_078bbc8b_fk_django_fl FOREIGN KEY (flatpage_id) REFERENCES public.django_flatpage(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_flatpage_sites django_flatpage_sites_site_id_bfd8ea84_fk_django_site_id; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.django_flatpage_sites
+    ADD CONSTRAINT django_flatpage_sites_site_id_bfd8ea84_fk_django_site_id FOREIGN KEY (site_id) REFERENCES public.django_site(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: flatpage_main_newflatpage flatpage_main_newfla_flatpage_id_8415db17_fk_django_fl; Type: FK CONSTRAINT; Schema: public; Owner: madamellie
+--
+
+ALTER TABLE ONLY public.flatpage_main_newflatpage
+    ADD CONSTRAINT flatpage_main_newfla_flatpage_id_8415db17_fk_django_fl FOREIGN KEY (flatpage_id) REFERENCES public.django_flatpage(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
