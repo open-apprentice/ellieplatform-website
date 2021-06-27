@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'clear_cache',
+    'taggit',
     # 3. own apps
     'blog',
     'pages',
@@ -61,6 +62,8 @@ INSTALLED_APPS += (
 )
 
 SITE_ID = 1  # Sitemaps https://www.codesnail.com/adding-a-sitemap-to-the-website-django-blog-10/
+
+TAGGIT_CASE_INSENSITIVE = True
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
