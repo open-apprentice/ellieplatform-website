@@ -5,6 +5,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from taggit.managers import TaggableManager
 
 
 # Profile Model
@@ -16,15 +17,16 @@ class Profile(models.Model):
     bio = RichTextField(null=True, max_length=500)
     profile_pic = models.ImageField(default='default-profile-pic.jpeg', upload_to='profiles-pics')
     # Social Media
-    twitter = models.CharField(max_length=255, null=False, blank=True, default="@", help_text="Enter just your handle, example, '@superbob'.")
+    twitter = models.CharField(max_length=255, null=False, blank=True, default="@",
+                               help_text="Enter just your handle, example, '@superbob'.")
     youtube = models.CharField(max_length=255, null=False, blank=True,
-                                      help_text="Enter just your username, example, 'bobbarker'.")
+                               help_text="Enter just your username, example, 'bobbarker'.")
     linkedin = models.CharField(max_length=255, null=False, blank=True,
-                                            help_text="Enter just your username, example, 'bobbarker'.")
+                                help_text="Enter just your username, example, 'bobbarker'.")
     instagram = models.CharField(max_length=255, null=False, blank=True, default="@",
-                                        help_text="Enter just your handle, example, '@superbob'.")
+                                 help_text="Enter just your handle, example, '@superbob'.")
     github = models.CharField(max_length=255, null=False, blank=True,
-                                  help_text="Enter just your username, example, 'superbob'.")
+                              help_text="Enter just your username, example, 'superbob'.")
     author_website = models.CharField(max_length=255, null=False, blank=True, default="https://",
                                       help_text="Enter your full website URL, eg. https://youwebsite.com ")
 
@@ -97,8 +99,9 @@ class Post(models.Model):
     header_image_alt = models.CharField(max_length=200,
                                         default="Sorry, we're assholes and forgot to give you an image description.")
     post_content = RichTextUploadingField()
-    intro = RichTextField(max_length=160)
+    tags = TaggableManager()
 
+    intro = RichTextField(max_length=160)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     active = models.BooleanField(default=True)
@@ -117,4 +120,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-

@@ -133,8 +133,9 @@
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex">
                                     <div class="mr-2">
-                                        <a href="{% url 'blog:category' slug=post.category.slug %}">{{
-                                            post.category.name }}</a>
+                                        <a href="{% url 'blog:category' slug=post.category.slug %}">
+                                            {{ post.category.name }}
+                                        </a>
                                     </div>
                                     <span class="text-muted">{{ post.published_date | date:'M d, Y' }}</span>
                                 </div>
@@ -152,7 +153,26 @@
                                     <span class="text-small text-muted">By</span>
                                     <span class="text-small">{{ author.get_full_name }}</span>
                                 </div>
+
                             </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    Tags:&nbsp
+                                    {% for tag in post.tags.all %}
+                                    <a href="{% url 'blog:post_tag' tag.slug %}" class="l">
+                                        {{tag.name}}
+                                    </a>
+                                    {% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </li>
+
+                                <span class="badge bg-primary-alt text-primary">
+                                    <a href="{% url 'blog:blog_post' slug=post.slug %}"
+                                       class="flex-grow-1">Read more... </a>
+                                    </span>
+
+
+                            </ul>
                         </div>
                     </div>
                 </div><!-- CARD END -->

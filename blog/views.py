@@ -1,11 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category, User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from taggit.models import Tag
 
 
-def post_list(request):
-    posts_list = Post.objects.filter(status="published")
-    paginator = Paginator(posts_list, 5)  # change this to accommodate number of posts per page
+def post_list(request, tag_slug=None):
+    posts = Post.objects.filter(status="published")
+
+    # post tag
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        posts = posts.filter(tags__in=[tag])
+
+    paginator = Paginator(posts, 5)  # change this to accommodate number of posts per page
     page = request.GET.get('page', 1)
     try:
         posts = paginator.page(page)
@@ -16,7 +24,8 @@ def post_list(request):
 
     context = {
         'posts': posts,
-        'page': page
+        'page': page,
+        'tag': tag,
     }
 
     return render(request, 'blog/post_list.html', context, )
