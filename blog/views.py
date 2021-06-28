@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Category, User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from taggit.models import Tag
+from django.db.models import Count
 
 
 def post_list(request, tag_slug=None):
@@ -83,8 +84,15 @@ def blog_post(request, slug):
     # post = Post.objects.get(slug=slug)
     post = get_object_or_404(Post, slug=slug, status='published')
 
+    # List of similar posts
+    post_tags_ids = post.tags.values_list('id', flat=True)
+    similar_posts = Post.objects.filter(active=True, tags__in=post_tags_ids).exclude(id=post.id)
+    similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-active')[
+                    :3]  # adjust slice here for amount of posts to show
+
     context = {
-        'post': post
+        'post': post,
+        'similar_posts': similar_posts,
     }
 
     return render(request, 'blog/blog_post.html', context)
