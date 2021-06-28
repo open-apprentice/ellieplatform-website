@@ -118,5 +118,8 @@ class Post(models.Model):
     def get_absolute_url(self):
         return '/' + self.slug
 
+    class Meta:
+        ordering = ['-published_date', ]
+
     def __str__(self):
         return self.title
