@@ -3,10 +3,12 @@ from .models import Post, Category, User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from taggit.models import Tag
 from django.db.models import Count
+from django.utils import timezone
 
 
 def post_list(request, tag_slug=None):
     posts = Post.objects.filter(status="published")
+    latest_posts = Post.objects.filter(published_date__lte=timezone.now()).reverse()[:3]
 
     # post tag
     tag = None
@@ -27,6 +29,7 @@ def post_list(request, tag_slug=None):
         'posts': posts,
         'page': page,
         'tag': tag,
+        'latest_posts': latest_posts,
     }
 
     return render(request, 'blog/post_list.html', context, )
