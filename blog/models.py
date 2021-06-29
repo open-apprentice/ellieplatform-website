@@ -99,7 +99,7 @@ class Post(models.Model):
     header_image_alt = models.CharField(max_length=200,
                                         default="Sorry, we're assholes and forgot to give you an image description.")
     post_content = RichTextUploadingField()
-    tags = TaggableManager()
+    tags = TaggableManager(blank=False)
 
     intro = RichTextField(max_length=160)
     created_date = models.DateTimeField(default=timezone.now)
