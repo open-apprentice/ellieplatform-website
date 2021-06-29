@@ -37,23 +37,23 @@ class Profile(models.Model):
 
     @property
     def twitter_profile_url(self):
-        return 'https://twitter.com/' + str(self.twitter)
+        return f'https://twitter.com/{self.twitter}'
 
     @property
     def youtube_profile_url(self):
-        return 'https://youtube.com/c/' + str(self.youtube)
+        return f'https://youtube.com/c/{self.youtube}'
 
     @property
     def linkedin_profile_url(self):
-        return 'https://linkedin.com/in/' + str(self.linkedin)
+        return f'https://linkedin.com/in/{self.linkedin}'
 
     @property
     def instagram_profile_url(self):
-        return 'https://instagram.com/' + str(self.instagram)
+        return f'https://instagram.com/{self.instagram}'
 
     @property
     def github_profile_url(self):
-        return 'https://github.com/' + str(self.github)
+        return f'https://github.com/{self.github}'
 
     def __str__(self):
         return str(self.user)
@@ -99,7 +99,7 @@ class Post(models.Model):
     header_image_alt = models.CharField(max_length=200,
                                         default="Sorry, we're assholes and forgot to give you an image description.")
     post_content = RichTextUploadingField()
-    tags = TaggableManager()
+    tags = TaggableManager(blank=False)
 
     intro = RichTextField(max_length=160)
     created_date = models.DateTimeField(default=timezone.now)
